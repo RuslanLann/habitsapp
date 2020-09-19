@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
     VictoryChart,
     VictoryTheme,
@@ -8,34 +8,18 @@ import {
     VictoryLabel,
 } from 'victory-native';
 
+import { radarChartSelectors } from './duck';
+
 const characterData = [
     { strength: 1, intelligence: 250, luck: 1, stealth: 40, charisma: 50 },
-    // { strength: 2, intelligence: 300, luck: 2, stealth: 80, charisma: 90 },
-    // { strength: 5, intelligence: 225, luck: 3, stealth: 60, charisma: 120 },
+    { strength: 2, intelligence: 300, luck: 2, stealth: 80, charisma: 90 },
+    { strength: 5, intelligence: 225, luck: 3, stealth: 60, charisma: 120 },
 ];
 
 const RadarChart = () => {
-    const getMaxima = data => {
-        const groupedData = Object.keys(data[0]).reduce((memo, key) => {
-            memo[key] = data.map(d => d[key]);
-            return memo;
-        }, {});
-        return Object.keys(groupedData).reduce((memo, key) => {
-            memo[key] = Math.max(...groupedData[key]);
-            return memo;
-        }, {});
-    };
-
-    const processData = data => {
-        const maxByGroup = getMaxima(data);
-        const makeDataArray = d => Object.keys(d).map(key => ({ x: key, y: d[key] / maxByGroup[key] }));
-        return data.map(datum => makeDataArray(datum));
-    };
-
-    const [state, setState] = useState({
-        data: processData(characterData),
-        maxima: getMaxima(characterData),
-    });
+    const { processData, getMaxima } = radarChartSelectors;
+    const chartData = processData(characterData);
+    const chartMaxima = getMaxima(characterData);
 
     return (
         <VictoryChart polar
@@ -45,10 +29,10 @@ const RadarChart = () => {
             <VictoryGroup colorScale={['gold', 'orange', 'tomato']}
                 style={{ data: { fillOpacity: 0.2, strokeWidth: 2 } }}
             >
-                {state.data.map((data, i) => <VictoryArea key={i} data={data}/>)}
+                {chartData.map((data, i) => <VictoryArea key={i} data={data}/>)}
             </VictoryGroup>
             {
-                Object.keys(state.maxima).map((key, i) => (
+                Object.keys(chartMaxima).map((key, i) => (
                     <VictoryPolarAxis key={i} dependentAxis
                         style={{
                             axisLabel: { padding: 10 },
@@ -60,7 +44,7 @@ const RadarChart = () => {
                         }
                         labelPlacement="perpendicular"
                         axisValue={i + 1} label={key}
-                        tickFormat={t => Math.ceil(t * state.maxima[key])}
+                        tickFormat={t => Math.ceil(t * chartMaxima[key])}
                         tickValues={[0.25, 0.5, 0.75]}
                     />
                 ))
