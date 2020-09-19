@@ -26,10 +26,15 @@ const RadarChart = () => {
             theme={VictoryTheme.material}
             domain={{ y: [0, 1] }}
         >
-            <VictoryGroup colorScale={['gold', 'orange', 'tomato']}
+            <VictoryGroup
+                colorScale={['gold', 'orange', 'tomato']}
                 style={{ data: { fillOpacity: 0.2, strokeWidth: 2 } }}
+                animate={{
+                    duration: 600,
+                    easing: 'circle',
+                }}
             >
-                {chartData.map((data, i) => <VictoryArea key={i} data={data}/>)}
+                {chartData.map((data, i) => <VictoryArea key={i} data={data} />)}
             </VictoryGroup>
             {
                 Object.keys(chartMaxima).map((key, i) => (
