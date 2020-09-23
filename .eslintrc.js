@@ -7,7 +7,7 @@ module.exports = {
         'prettier/prettier': 0,
         indent: [
             "error",
-            4
+            2
         ],
         "quotes": [
             "error",
