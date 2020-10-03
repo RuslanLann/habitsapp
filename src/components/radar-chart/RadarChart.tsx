@@ -9,6 +9,7 @@ import {
 } from 'victory-native';
 
 import { radarChartSelectors } from './duck';
+import { IChartMaxima } from './types';
 
 const characterData = [
   { strength: 1, intelligence: 250, luck: 1, stealth: 40, charisma: 50 },
@@ -19,7 +20,7 @@ const characterData = [
 const RadarChart = () => {
   const { processData, getMaxima } = radarChartSelectors;
   const chartData = processData(characterData);
-  const chartMaxima = getMaxima(characterData);
+  const chartMaxima: IChartMaxima = getMaxima(characterData);
 
   return (
     <VictoryChart polar
