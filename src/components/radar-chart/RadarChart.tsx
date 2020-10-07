@@ -7,6 +7,7 @@ import {
   VictoryPolarAxis,
   VictoryLabel,
 } from 'victory-native';
+import { colors } from '../../constants';
 
 import { radarChartSelectors } from './duck';
 import { IChartMaxima } from './types';
@@ -28,7 +29,7 @@ const RadarChart = () => {
       domain={{ y: [0, 1] }}
     >
       <VictoryGroup
-        colorScale={['gold', 'orange', 'tomato']}
+        colorScale={[colors.RED, colors.ORANGE, colors.GREEN]}
         style={{ data: { fillOpacity: 0.2, strokeWidth: 2 } }}
         animate={{
           duration: 600,
