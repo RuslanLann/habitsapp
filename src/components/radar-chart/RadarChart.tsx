@@ -15,7 +15,7 @@ import { IChartMaxima } from './types';
 
 const RadarChart = () => {
   const [chartData, setChartData] = useState<object[]>([]);
-  const [chartMaxima, setChartMaxima] = useState<IChartMaxima | object>({});
+  const [chartMaxima, setChartMaxima] = useState<IChartMaxima | null>(null);
 
   useEffect(() => {
     REST.getData()
@@ -41,7 +41,7 @@ const RadarChart = () => {
         {chartData.map((data, i) => <VictoryArea key={i} data={data} />)}
       </VictoryGroup>
       {
-        Object.keys(chartMaxima).map((key, i) => (
+        chartMaxima && Object.keys(chartMaxima).map((key, i) => (
           <VictoryPolarAxis key={i} dependentAxis
             style={{
               axisLabel: { padding: 10 },
