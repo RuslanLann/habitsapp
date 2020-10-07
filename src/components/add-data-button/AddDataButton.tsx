@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, TouchableOpacity } from 'react-native';
-import { colors, sizes } from '../../constants';
+import { colors, constants, sizes } from '../../constants';
 
 const AddDataButton = () => (
   <TouchableOpacity style={styles.button}>
@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
     height: 50,
     marginTop: 30,
     position: 'absolute',
-    bottom: 30,
+    bottom: constants.isIos ? 5 : 15,
     right: sizes.PADDING_HORIZONTAL,
     left: sizes.PADDING_HORIZONTAL,
     backgroundColor: colors.GREEN,
