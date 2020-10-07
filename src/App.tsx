@@ -1,13 +1,14 @@
 import React from 'react';
 import { StyleSheet, StatusBar, View } from 'react-native';
 
-import { RadarChart, AddDataButton } from './components';
+import { RadarChart, AddDataButton, FeatureList } from './components';
 
 const App = () => (
   <>
     <StatusBar barStyle="dark-content" />
     <View style={styles.chartContainer}>
       <RadarChart />
+      <FeatureList />
       <AddDataButton />
     </View>
   </>

@@ -1,3 +1,5 @@
+import { IChartData } from '../types/chartData';
+
 const characterData = [
   { strength: 1, intelligence: 250, luck: 1, stealth: 40, charisma: 50 },
   { strength: 2, intelligence: 300, luck: 2, stealth: 80, charisma: 90 },
@@ -5,7 +7,7 @@ const characterData = [
 ];
 
 export default {
-  getData: (): Promise<object[]> => new Promise(resolve => {
+  getData: (): Promise<IChartData[]> => new Promise(resolve => {
     setTimeout(() => {
       resolve(characterData);
     }, 500);

@@ -9,9 +9,9 @@ import {
 } from 'victory-native';
 import { colors } from '../../constants';
 import { REST } from '../../rest';
+import { IChartData, IChartMaxima } from '../../types/chartData';
 
 import { radarChartSelectors } from './duck';
-import { IChartMaxima } from './types';
 
 const RadarChart = () => {
   const [chartData, setChartData] = useState<object[]>([]);
@@ -19,7 +19,7 @@ const RadarChart = () => {
 
   useEffect(() => {
     REST.getData()
-      .then((d: object[]) => {
+      .then((d: IChartData[]) => {
         setChartData(radarChartSelectors.processData(d));
         setChartMaxima(radarChartSelectors.getMaxima(d));
       });
