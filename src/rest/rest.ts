@@ -10,6 +10,6 @@ export default {
   getData: (): Promise<IChartData[]> => new Promise(resolve => {
     setTimeout(() => {
       resolve(characterData);
-    }, 500);
+    }, 100);
   }),
 };
