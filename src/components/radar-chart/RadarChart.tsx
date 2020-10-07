@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   VictoryChart,
   VictoryTheme,
@@ -8,20 +8,22 @@ import {
   VictoryLabel,
 } from 'victory-native';
 import { colors } from '../../constants';
+import { REST } from '../../rest';
 
 import { radarChartSelectors } from './duck';
 import { IChartMaxima } from './types';
 
-const characterData = [
-  { strength: 1, intelligence: 250, luck: 1, stealth: 40, charisma: 50 },
-  { strength: 2, intelligence: 300, luck: 2, stealth: 80, charisma: 90 },
-  { strength: 5, intelligence: 225, luck: 3, stealth: 60, charisma: 120 },
-];
-
 const RadarChart = () => {
-  const { processData, getMaxima } = radarChartSelectors;
-  const chartData = processData(characterData);
-  const chartMaxima: IChartMaxima = getMaxima(characterData);
+  const [chartData, setChartData] = useState<object[]>([]);
+  const [chartMaxima, setChartMaxima] = useState<IChartMaxima | object>({});
+
+  useEffect(() => {
+    REST.getData()
+      .then((d: object[]) => {
+        setChartData(radarChartSelectors.processData(d));
+        setChartMaxima(radarChartSelectors.getMaxima(d));
+      });
+  }, []);
 
   return (
     <VictoryChart polar
@@ -47,11 +49,11 @@ const RadarChart = () => {
               grid: { stroke: 'grey', strokeWidth: 0.25, opacity: 0.5 },
             }}
             tickLabelComponent={
-              <VictoryLabel labelPlacement="vertical"/>
+              <VictoryLabel labelPlacement="vertical" />
             }
             labelPlacement="perpendicular"
             axisValue={i + 1} label={key}
-            tickFormat={t => Math.ceil(t * chartMaxima[key])}
+            tickFormat={t => Math.ceil(t * chartMaxima[ key ])}
             tickValues={[0.25, 0.5, 0.75]}
           />
         ))
