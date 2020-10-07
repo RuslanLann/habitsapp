@@ -17,12 +17,13 @@ const FeatureList = () => {
   return (
     <FlatList
       data={chartData}
-      renderItem={({ item, index }) => (
-        <View key={index}>
+      renderItem={({ item }) => (
+        <View>
           <Text>intelligence</Text>
           <Text>{item.intelligence}</Text>
         </View>
       )}
+      keyExtractor={(item: IChartData, index: number) => `${index}`}
     />
   );
 };
