@@ -24,13 +24,13 @@ const styles = StyleSheet.create({
   },
   screenContainer: {
     flexGrow: 1,
-    padding: sizes.PADDING_HORIZONTAL,
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius: 20,
+    paddingHorizontal: sizes.PADDING_HORIZONTAL,
   },
   chartContainer: {
     backgroundColor: colors.SECOND_BLACK,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 20,
   },
 });
 
