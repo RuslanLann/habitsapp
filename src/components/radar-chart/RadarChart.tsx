@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Text } from 'react-native';
 import {
   VictoryChart,
   VictoryTheme,
@@ -26,7 +27,8 @@ const RadarChart = () => {
   }, []);
 
   return (
-    <VictoryChart polar
+    <VictoryChart
+      polar
       theme={VictoryTheme.material}
       domain={{ y: [0, 1] }}
     >
@@ -42,17 +44,21 @@ const RadarChart = () => {
       </VictoryGroup>
       {
         chartMaxima && Object.keys(chartMaxima).map((key, i) => (
-          <VictoryPolarAxis key={i} dependentAxis
+          <VictoryPolarAxis
+            key={i}
+            dependentAxis
             style={{
-              axisLabel: { padding: 10 },
+              axisLabel: { padding: 20, fill: 'white' },
               axis: { stroke: 'none' },
-              grid: { stroke: 'grey', strokeWidth: 0.25, opacity: 0.5 },
+              grid: { stroke: 'white', strokeWidth: 0.25, opacity: 0.8 },
+              tickLabels: { fill: 'white' },
             }}
             tickLabelComponent={
               <VictoryLabel labelPlacement="vertical" />
             }
-            labelPlacement="perpendicular"
-            axisValue={i + 1} label={key}
+            labelPlacement="vertical"
+            label={key}
+            axisValue={i + 1}
             tickFormat={t => Math.ceil(t * chartMaxima[ key ])}
             tickValues={[0.25, 0.5, 0.75]}
           />
@@ -63,7 +69,7 @@ const RadarChart = () => {
         tickFormat={() => ''}
         style={{
           axis: { stroke: 'none' },
-          grid: { stroke: 'grey', opacity: 0.5 },
+          grid: { stroke: 'white', opacity: 0.8 },
         }}
       />
     </VictoryChart>
