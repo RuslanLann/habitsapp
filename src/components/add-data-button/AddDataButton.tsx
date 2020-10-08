@@ -1,29 +1,33 @@
 import React from 'react';
-import { StyleSheet, Text, TouchableOpacity } from 'react-native';
+import { StyleSheet, TouchableOpacity } from 'react-native';
+import Icon from 'react-native-vector-icons/dist/Ionicons';
+
 import { colors, constants, sizes } from '../../constants';
+
+const BUTTON_SIZE = 50;
+const ICON_SIZE = 30;
 
 const AddDataButton = () => (
   <TouchableOpacity style={styles.button}>
-    <Text style={styles.text}>Add Data</Text>
+    <Icon name="add-outline" size={ICON_SIZE} color="#ffffff" style={styles.icon} />
   </TouchableOpacity>
 );
 
 const styles = StyleSheet.create({
   button: {
-    height: 50,
-    marginTop: 30,
+    height: BUTTON_SIZE,
+    width: BUTTON_SIZE,
+    borderRadius: BUTTON_SIZE,
     position: 'absolute',
     bottom: constants.isIos ? 5 : 15,
-    right: sizes.PADDING_HORIZONTAL,
-    left: sizes.PADDING_HORIZONTAL,
-    backgroundColor: colors.GREEN,
+    left: (sizes.SCREEN_WIDTH / 2) - (BUTTON_SIZE / 2),
+    backgroundColor: colors.BLUE,
     justifyContent: 'center',
     alignItems: 'center',
-    borderRadius: 5,
   },
-  text: {
-    color: 'white',
-    fontSize: 16,
+  icon: {
+    height: ICON_SIZE,
+    width: ICON_SIZE,
   },
 });
 
