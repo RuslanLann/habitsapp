@@ -31,7 +31,7 @@ const RadarChart = () => {
       domain={{ y: [0, 1] }}
     >
       <VictoryGroup
-        colorScale={[colors.RED, colors.ORANGE, colors.GREEN]}
+        colorScale={[colors.BLUE, colors.ORANGE, colors.TURQ]}
         style={{ data: { fillOpacity: 0.2, strokeWidth: 2 } }}
         animate={{
           duration: 600,

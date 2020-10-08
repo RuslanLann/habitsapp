@@ -1,13 +1,15 @@
-const RED = '#e76f51';
-const ORANGE = '#f4a261';
-const YELLOW = '#e9c46a';
-const GREEN = '#2a9d8f';
-const BLUE = '#264653';
+const BLACK = '#18181A';
+const SECOND_BLACK = '#232329';
+const TURQ = '#8CEFF3';
+const ORANGE = '#EA7A55';
+const BLUE = '#3E6BD6';
+const RED = '#BB495E';
 
 export default {
-  RED,
+  BLACK,
+  SECOND_BLACK,
+  TURQ,
   ORANGE,
-  YELLOW,
-  GREEN,
   BLUE,
+  RED,
 };
