@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { VictoryChart, VictoryTheme, VictoryGroup, VictoryArea, VictoryPolarAxis, VictoryLabel } from 'victory-native';
-import { colors } from '../../theme';
+import { themeProvider } from '../../theme';
 import { REST } from '../../rest';
 import { IChartData, IChartMaxima } from '../../types/chartData';
 
@@ -9,6 +9,7 @@ import { radarChartSelectors } from './duck';
 const RadarChart = () => {
   const [chartData, setChartData] = useState<object[]>([]);
   const [chartMaxima, setChartMaxima] = useState<IChartMaxima | null>(null);
+  const { colors } = themeProvider;
 
   useEffect(() => {
     REST.getData().then((d: IChartData[]) => {
@@ -20,7 +21,7 @@ const RadarChart = () => {
   return (
     <VictoryChart polar theme={VictoryTheme.material} domain={{ y: [0, 1] }}>
       <VictoryGroup
-        colorScale={[colors.BLUE, colors.ORANGE, colors.TURQ]}
+        colorScale={[colors.primary, colors.notification, colors.turq]}
         style={{ data: { fillOpacity: 0.2, strokeWidth: 2 } }}
         animate={{
           duration: 600,
@@ -37,10 +38,10 @@ const RadarChart = () => {
             key={i}
             dependentAxis
             style={{
-              axisLabel: { padding: 20, fill: 'white' },
+              axisLabel: { padding: 20, fill: colors.text },
               axis: { stroke: 'none' },
-              grid: { stroke: 'white', strokeWidth: 0.25, opacity: 0.8 },
-              tickLabels: { fill: 'white' },
+              grid: { stroke: colors.text, strokeWidth: 0.25, opacity: 0.8 },
+              tickLabels: { fill: colors.text },
             }}
             tickLabelComponent={<VictoryLabel labelPlacement="vertical" />}
             labelPlacement="vertical"
@@ -55,7 +56,7 @@ const RadarChart = () => {
         tickFormat={() => ''}
         style={{
           axis: { stroke: 'none' },
-          grid: { stroke: 'white', opacity: 0.8 },
+          grid: { stroke: colors.text, opacity: 0.8 },
         }}
       />
     </VictoryChart>

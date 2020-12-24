@@ -2,7 +2,7 @@ import React from 'react';
 import { SafeAreaView, StatusBar, StyleSheet, View } from 'react-native';
 
 import { AddDataButton, FeatureList, RadarChart } from '../../components';
-import { colors, sizes } from '../../theme';
+import { sizes, themeProvider } from '../../theme';
 
 const RadarScreen = () => (
   <SafeAreaView style={styles.safeAreaView}>
@@ -20,14 +20,14 @@ const RadarScreen = () => (
 const styles = StyleSheet.create({
   safeAreaView: {
     flex: 1,
-    backgroundColor: colors.BLACK,
+    backgroundColor: themeProvider.colors.background,
   },
   screenContainer: {
     flexGrow: 1,
-    paddingHorizontal: sizes.PADDING_HORIZONTAL,
+    paddingHorizontal: sizes.paddingHorizontal,
   },
   chartContainer: {
-    backgroundColor: colors.SECOND_BLACK,
+    backgroundColor: themeProvider.colors.card,
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 20,
