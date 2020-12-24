@@ -1,14 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { Text } from 'react-native';
-import {
-  VictoryChart,
-  VictoryTheme,
-  VictoryGroup,
-  VictoryArea,
-  VictoryPolarAxis,
-  VictoryLabel,
-} from 'victory-native';
-import { colors } from '../../constants';
+import { VictoryChart, VictoryTheme, VictoryGroup, VictoryArea, VictoryPolarAxis, VictoryLabel } from 'victory-native';
+import { colors } from '../../theme';
 import { REST } from '../../rest';
 import { IChartData, IChartMaxima } from '../../types/chartData';
 
@@ -19,19 +11,14 @@ const RadarChart = () => {
   const [chartMaxima, setChartMaxima] = useState<IChartMaxima | null>(null);
 
   useEffect(() => {
-    REST.getData()
-      .then((d: IChartData[]) => {
-        setChartData(radarChartSelectors.processData(d));
-        setChartMaxima(radarChartSelectors.getMaxima(d));
-      });
+    REST.getData().then((d: IChartData[]) => {
+      setChartData(radarChartSelectors.processData(d));
+      setChartMaxima(radarChartSelectors.getMaxima(d));
+    });
   }, []);
 
   return (
-    <VictoryChart
-      polar
-      theme={VictoryTheme.material}
-      domain={{ y: [0, 1] }}
-    >
+    <VictoryChart polar theme={VictoryTheme.material} domain={{ y: [0, 1] }}>
       <VictoryGroup
         colorScale={[colors.BLUE, colors.ORANGE, colors.TURQ]}
         style={{ data: { fillOpacity: 0.2, strokeWidth: 2 } }}
@@ -40,10 +27,12 @@ const RadarChart = () => {
           easing: 'circle',
         }}
       >
-        {chartData.map((data, i) => <VictoryArea key={i} data={data} />)}
+        {chartData.map((data, i) => (
+          <VictoryArea key={i} data={data} />
+        ))}
       </VictoryGroup>
-      {
-        chartMaxima && Object.keys(chartMaxima).map((key, i) => (
+      {chartMaxima &&
+        Object.keys(chartMaxima).map((key, i) => (
           <VictoryPolarAxis
             key={i}
             dependentAxis
@@ -53,17 +42,14 @@ const RadarChart = () => {
               grid: { stroke: 'white', strokeWidth: 0.25, opacity: 0.8 },
               tickLabels: { fill: 'white' },
             }}
-            tickLabelComponent={
-              <VictoryLabel labelPlacement="vertical" />
-            }
+            tickLabelComponent={<VictoryLabel labelPlacement="vertical" />}
             labelPlacement="vertical"
             label={key}
             axisValue={i + 1}
-            tickFormat={t => Math.ceil(t * chartMaxima[ key ])}
+            tickFormat={(t) => Math.ceil(t * chartMaxima[key])}
             tickValues={[0.25, 0.5, 0.75]}
           />
-        ))
-      }
+        ))}
       <VictoryPolarAxis
         labelPlacement="parallel"
         tickFormat={() => ''}

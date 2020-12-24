@@ -2,7 +2,7 @@ import React from 'react';
 import { SafeAreaView, StatusBar, StyleSheet, View } from 'react-native';
 
 import { AddDataButton, FeatureList, RadarChart } from '../../components';
-import { colors, sizes } from '../../constants';
+import { colors, sizes } from '../../theme';
 
 const RadarScreen = () => (
   <SafeAreaView style={styles.safeAreaView}>

@@ -2,7 +2,8 @@ import React from 'react';
 import { StyleSheet, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/dist/Ionicons';
 
-import { colors, constants, sizes } from '../../constants';
+import { colors, sizes } from '../../theme';
+import { constants } from '../../constants';
 
 const BUTTON_SIZE = 50;
 const ICON_SIZE = 30;
@@ -20,7 +21,7 @@ const styles = StyleSheet.create({
     borderRadius: BUTTON_SIZE,
     position: 'absolute',
     bottom: constants.isIos ? 5 : 15,
-    left: (sizes.SCREEN_WIDTH / 2) - (BUTTON_SIZE / 2),
+    left: sizes.SCREEN_WIDTH / 2 - BUTTON_SIZE / 2,
     backgroundColor: colors.BLUE,
     justifyContent: 'center',
     alignItems: 'center',
