@@ -1,11 +1,11 @@
 import React, { FC, ReactElement } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
-import { themeProvider, responsivePixels, sizes } from '../../theme';
+import { themeProvider, responsivePixels, sizes } from '../../../theme';
 
 interface IFeatureListItem {
   title: string;
-  value: string;
+  value: number;
 }
 
 const FeatureListItem: FC<IFeatureListItem> = ({ title, value }): ReactElement => {

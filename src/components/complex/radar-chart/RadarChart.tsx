@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { VictoryChart, VictoryTheme, VictoryGroup, VictoryArea, VictoryPolarAxis, VictoryLabel } from 'victory-native';
-import { themeProvider } from '../../theme';
-import { REST } from '../../rest';
-import { IChartData, IChartMaxima } from '../../types/chartData';
+import { themeProvider } from '../../../theme';
+import { REST } from '../../../rest';
+import { IChartData, IChartMaxima } from '../../../types/chartData';
 
 import { radarChartSelectors } from './duck';
 

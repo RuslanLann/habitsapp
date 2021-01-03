@@ -1,4 +1,4 @@
-import { IChartData, IChartMaxima } from '../../../types/chartData';
+import { IChartData, IChartMaxima } from '../../../../types/chartData';
 
 // from victory native example
 const getMaxima = (data: IChartData[]): IChartMaxima => {
@@ -15,8 +15,8 @@ const getMaxima = (data: IChartData[]): IChartMaxima => {
 // from victory native example
 const processData = (data: IChartData[]) => {
   const maxByGroup = getMaxima(data);
-  const makeDataArray = (d: object) => Object.keys(d).map(key => ({ x: key, y: d[key] / maxByGroup[key] }));
-  return data.map(datum => makeDataArray(datum));
+  const makeDataArray = (d: object) => Object.keys(d).map((key) => ({ x: key, y: d[key] / maxByGroup[key] }));
+  return data.map((datum) => makeDataArray(datum));
 };
 
 export default {

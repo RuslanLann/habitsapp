@@ -1,9 +1,9 @@
 import React, { FC, ReactElement, useEffect, useState } from 'react';
-import { View, Text, FlatList, StyleSheet } from 'react-native';
+import { StyleSheet, SectionList, TextStyle, Text } from 'react-native';
 
-import { REST } from '../../rest';
-import { sizes } from '../../theme';
-import { IChartData } from '../../types/chartData';
+import { REST } from '../../../rest';
+import { responsivePixels, themeProvider } from '../../../theme';
+import { IChartData } from '../../../types/chartData';
 import FeatureListItem from '../feature-list-item/FeatureListItem';
 
 const FeatureList: FC = (): ReactElement => {
@@ -16,9 +16,12 @@ const FeatureList: FC = (): ReactElement => {
   }, []);
 
   return (
-    <FlatList
-      style={styles.container}
-      data={chartData}
+    <SectionList
+      sections={[
+        { title: 'Mind', data: chartData },
+        { title: 'Body', data: chartData },
+      ]}
+      renderSectionHeader={({ section: { title } }) => <Text style={styles.header}>{title}</Text>}
       renderItem={({ item }) => {
         console.log(item, 'item <<<<');
         const itemKeyValue = Object.keys(item);
@@ -32,9 +35,13 @@ const FeatureList: FC = (): ReactElement => {
 };
 
 const styles = StyleSheet.create({
-  container: {
-    paddingTop: sizes.padding,
-  },
+  header: {
+    marginTop: 15,
+    marginBottom: 5,
+    fontSize: responsivePixels.getWidthPx(20),
+    color: themeProvider.colors.notification,
+    // backgroundColor: themeProvider.colors.card,
+  } as TextStyle,
 });
 
 export default FeatureList;
