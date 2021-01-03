@@ -3,12 +3,10 @@ import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-nat
 const horizontalPixel = wp('0.283%');
 const verticalPixel = hp('0.125%');
 
-const responsiveHeight = (pixel: number) => horizontalPixel * pixel;
-const responsiveWidth = (pixel: number) => verticalPixel * pixel;
+const getHeightPx = (pixel: number) => horizontalPixel * pixel;
+const getWidthPx = (pixel: number) => verticalPixel * pixel;
 
 export default {
-  horizontalPixel,
-  verticalPixel,
-  responsiveHeight,
-  responsiveWidth,
+  getHeightPx,
+  getWidthPx,
 };

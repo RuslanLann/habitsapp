@@ -24,13 +24,14 @@ const styles = StyleSheet.create({
   },
   screenContainer: {
     flexGrow: 1,
-    paddingHorizontal: sizes.paddingHorizontal,
+    paddingHorizontal: sizes.padding,
   },
   chartContainer: {
     backgroundColor: themeProvider.colors.card,
     justifyContent: 'center',
     alignItems: 'center',
-    borderRadius: 20,
+    borderRadius: sizes.borderRadius,
+    ...themeProvider.boxShadow,
   },
 });
 

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC, ReactElement } from 'react';
 import { StyleSheet, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/dist/Ionicons';
 
@@ -8,7 +8,7 @@ import { constants } from '../../constants';
 const BUTTON_SIZE = 50;
 const ICON_SIZE = 30;
 
-const AddDataButton = () => (
+const AddDataButton: FC = (): ReactElement => (
   <TouchableOpacity style={styles.button}>
     <Icon name="add-outline" size={ICON_SIZE} color="#ffffff" style={styles.icon} />
   </TouchableOpacity>

@@ -2,14 +2,16 @@ import { Dimensions } from 'react-native';
 
 import responsivePixels from './responsivePixels';
 
-const { responsiveWidth } = responsivePixels;
+const { getHeightPx } = responsivePixels;
 
 const screenWidth = Dimensions.get('window').width;
 const screenHeight = Dimensions.get('window').height;
-const paddingHorizontal = responsiveWidth(15);
+const padding = getHeightPx(15);
+const borderRadius = 8;
 
 export default {
   screenWidth,
   screenHeight,
-  paddingHorizontal,
+  padding,
+  borderRadius,
 };
