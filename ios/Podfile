@@ -3,13 +3,13 @@ require_relative '../node_modules/@react-native-community/cli-platform-ios/nativ
 
 platform :ios, '10.0'
 
-target 'habitsapp' do
+target 'Habitsapp' do
   config = use_native_modules!
 
   use_react_native!(:path => config["reactNativePath"])
 
 
-  target 'habitsappTests' do
+  target 'HabitsappTests' do
     inherit! :complete
     # Pods for testing
   end

@@ -6,10 +6,11 @@ import { IChartData, IChartMaxima } from '../../types/chartData';
 
 import { radarChartSelectors } from './duck';
 
+const { colors } = themeProvider;
+
 const RadarChart = () => {
   const [chartData, setChartData] = useState<object[]>([]);
   const [chartMaxima, setChartMaxima] = useState<IChartMaxima | null>(null);
-  const { colors } = themeProvider;
 
   useEffect(() => {
     REST.getData().then((d: IChartData[]) => {
