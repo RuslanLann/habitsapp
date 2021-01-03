@@ -25,10 +25,14 @@ const styles = StyleSheet.create({
     backgroundColor: themeProvider.colors.primary,
     justifyContent: 'center',
     alignItems: 'center',
+    overflow: 'hidden',
   },
   icon: {
-    height: ICON_SIZE,
-    width: ICON_SIZE,
+    height: BUTTON_SIZE,
+    width: BUTTON_SIZE,
+    paddingLeft: 1,
+    lineHeight: BUTTON_SIZE,
+    textAlign: 'center',
   },
 });
 
