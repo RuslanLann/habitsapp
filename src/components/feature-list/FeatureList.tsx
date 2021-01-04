@@ -31,7 +31,7 @@ const FeatureList: FC = (): ReactElement => {
         const itemKeyValue = Object.keys(item);
         console.log(itemKeyValue, 'itemKeyValue <<<<');
 
-        return <FeatureListItem title={itemKeyValue[1]} value={item[itemKeyValue[1]]} />;
+        return <FeatureListItem title={itemKeyValue[1]} />;
       }}
       keyExtractor={(item: IChartData, index: number) => `${index}`}
       showsVerticalScrollIndicator={false}
