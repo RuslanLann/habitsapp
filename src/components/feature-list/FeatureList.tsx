@@ -20,10 +20,11 @@ const FeatureList: FC = (): ReactElement => {
     <SectionList
       contentContainerStyle={styles.contentContainerStyle}
       sections={[
-        { title: 'Mind', data: chartData },
-        { title: 'Body', data: chartData },
-        { title: 'Finances', data: chartData },
-        { title: 'Other', data: chartData },
+        { title: 'Intelligence', data: chartData },
+        { title: 'Strength', data: chartData },
+        { title: 'Charisma', data: chartData },
+        { title: 'Stealth', data: chartData },
+        { title: 'Luck', data: chartData },
       ]}
       renderSectionHeader={({ section: { title } }) => <FeatureListHeader title={title} />}
       renderItem={({ item }) => {

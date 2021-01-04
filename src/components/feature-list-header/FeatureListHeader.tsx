@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
     backgroundColor: themeProvider.colors.primary,
   } as ViewStyle,
   title: {
-    fontSize: responsivePixels.getWidthPx(18),
+    fontSize: responsivePixels.getWidthPx(16),
     color: themeProvider.colors.text,
     fontWeight: 'bold',
   } as TextStyle,

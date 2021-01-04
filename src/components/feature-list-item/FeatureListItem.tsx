@@ -21,6 +21,7 @@ const FeatureListItem: FC<IFeatureListItem> = ({ title }): ReactElement => {
 const styles = StyleSheet.create({
   card: {
     marginBottom: 5,
+    paddingVertical: 0,
     paddingRight: 5,
     justifyContent: 'space-between',
   } as ViewStyle,
