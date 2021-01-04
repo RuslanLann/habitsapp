@@ -3,17 +3,18 @@ import { SafeAreaView, StatusBar, StyleSheet, View } from 'react-native';
 
 import { AddDataButton, FeatureList, RadarChart } from '../../components';
 import { sizes, themeProvider } from '../../theme';
+import { Card } from '../../uikit';
 
 const RadarScreen = () => (
   <SafeAreaView style={styles.safeAreaView}>
     <StatusBar barStyle="dark-content" />
     <View style={styles.screenContainer}>
-      <View style={styles.chartContainer}>
+      <Card>
         <RadarChart />
-      </View>
+      </Card>
       <FeatureList />
-      <AddDataButton />
     </View>
+    <AddDataButton />
   </SafeAreaView>
 );
 
@@ -25,13 +26,6 @@ const styles = StyleSheet.create({
   screenContainer: {
     flexGrow: 1,
     paddingHorizontal: sizes.padding,
-  },
-  chartContainer: {
-    backgroundColor: themeProvider.colors.card,
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius: sizes.borderRadius,
-    ...themeProvider.boxShadow,
   },
 });
 

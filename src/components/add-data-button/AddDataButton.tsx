@@ -2,8 +2,8 @@ import React, { FC, ReactElement } from 'react';
 import { StyleSheet, TouchableOpacity, View } from 'react-native';
 import Icon from 'react-native-vector-icons/dist/Ionicons';
 
-import { sizes, themeProvider } from '../../../theme';
-import { constants } from '../../../constants';
+import { sizes, themeProvider } from '../../theme';
+import { helpers } from '../../utils';
 
 const BUTTON_SIZE = 50;
 const ICON_SIZE = 30;
@@ -21,10 +21,11 @@ const styles = StyleSheet.create({
     height: BUTTON_SIZE,
     width: BUTTON_SIZE,
     position: 'absolute',
-    bottom: constants.isIos ? 5 : 15,
+    bottom: helpers.isIphoneXTernary(25, 15),
     left: sizes.screenWidth / 2 - BUTTON_SIZE / 2,
     ...themeProvider.boxShadow,
     shadowColor: themeProvider.colors.primary,
+    zIndex: 99,
   },
   button: {
     height: BUTTON_SIZE,

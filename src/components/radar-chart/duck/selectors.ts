@@ -1,4 +1,4 @@
-import { IChartData, IChartMaxima } from '../../../../types/chartData';
+import { IChartData, IChartMaxima } from '../../../types/chartData';
 
 // from victory native example
 const getMaxima = (data: IChartData[]): IChartMaxima => {

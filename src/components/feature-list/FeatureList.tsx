@@ -1,9 +1,10 @@
 import React, { FC, ReactElement, useEffect, useState } from 'react';
-import { StyleSheet, SectionList, TextStyle, Text } from 'react-native';
+import { StyleSheet, SectionList } from 'react-native';
 
-import { REST } from '../../../rest';
-import { responsivePixels, themeProvider } from '../../../theme';
-import { IChartData } from '../../../types/chartData';
+import { REST } from '../../rest';
+import { sizes } from '../../theme';
+import { IChartData } from '../../types/chartData';
+import FeatureListHeader from '../feature-list-header/FeatureListHeader';
 import FeatureListItem from '../feature-list-item/FeatureListItem';
 
 const FeatureList: FC = (): ReactElement => {
@@ -17,11 +18,14 @@ const FeatureList: FC = (): ReactElement => {
 
   return (
     <SectionList
+      contentContainerStyle={styles.contentContainerStyle}
       sections={[
         { title: 'Mind', data: chartData },
         { title: 'Body', data: chartData },
+        { title: 'Finances', data: chartData },
+        { title: 'Other', data: chartData },
       ]}
-      renderSectionHeader={({ section: { title } }) => <Text style={styles.header}>{title}</Text>}
+      renderSectionHeader={({ section: { title } }) => <FeatureListHeader title={title} />}
       renderItem={({ item }) => {
         console.log(item, 'item <<<<');
         const itemKeyValue = Object.keys(item);
@@ -30,18 +34,15 @@ const FeatureList: FC = (): ReactElement => {
         return <FeatureListItem title={itemKeyValue[1]} value={item[itemKeyValue[1]]} />;
       }}
       keyExtractor={(item: IChartData, index: number) => `${index}`}
+      showsVerticalScrollIndicator={false}
     />
   );
 };
 
 const styles = StyleSheet.create({
-  header: {
-    marginTop: 15,
-    marginBottom: 5,
-    fontSize: responsivePixels.getWidthPx(20),
-    color: themeProvider.colors.notification,
-    // backgroundColor: themeProvider.colors.card,
-  } as TextStyle,
+  contentContainerStyle: {
+    paddingBottom: sizes.screenHeight / 2,
+  },
 });
 
 export default FeatureList;
