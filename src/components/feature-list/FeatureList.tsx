@@ -58,8 +58,9 @@ const FeatureList: FC<IFeatureList> = ({ onScroll }): ReactElement => {
 
 const styles = StyleSheet.create({
   contentContainerStyle: {
+    marginTop: RADAR_CARD_HEIGHT * 0.4,
     paddingBottom: 50,
-    paddingTop: RADAR_CARD_HEIGHT,
+    paddingTop: RADAR_CARD_HEIGHT - RADAR_CARD_HEIGHT * 0.4,
   },
 });
 
