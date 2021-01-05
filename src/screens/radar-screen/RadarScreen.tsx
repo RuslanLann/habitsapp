@@ -38,6 +38,11 @@ const RadarScreen = () => {
         chartScale.value = 1;
         cardHeight.value = RADAR_CARD_HEIGHT;
       }
+
+      if (scalePercent < 0.4) {
+        chartScale.value = 0.4;
+        cardHeight.value = RADAR_CARD_HEIGHT * 0.4;
+      }
     },
   });
 

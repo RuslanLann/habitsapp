@@ -36,6 +36,11 @@ const FeatureList: FC<IFeatureList> = ({ onScroll }): ReactElement => {
         { title: 'Charisma', data: chartData },
         { title: 'Stealth', data: chartData },
         { title: 'Luck', data: chartData },
+        { title: 'Intelligence', data: chartData },
+        { title: 'Strength', data: chartData },
+        { title: 'Charisma', data: chartData },
+        { title: 'Stealth', data: chartData },
+        { title: 'Luck', data: chartData },
       ]}
       renderSectionHeader={({ section: { title } }) => <FeatureListHeader title={title} />}
       renderItem={({ item }) => {
