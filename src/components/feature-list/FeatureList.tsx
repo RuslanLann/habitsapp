@@ -1,5 +1,6 @@
 import React, { FC, ReactElement, useEffect, useState } from 'react';
-import { StyleSheet, SectionList } from 'react-native';
+import { StyleSheet, SectionList, NativeSyntheticEvent, NativeScrollEvent, ViewStyle } from 'react-native';
+import Animated from 'react-native-reanimated';
 
 import { REST } from '../../rest';
 import { sizes } from '../../theme';
@@ -7,8 +8,18 @@ import { IChartData } from '../../types/chartData';
 import FeatureListHeader from '../feature-list-header/FeatureListHeader';
 import FeatureListItem from '../feature-list-item/FeatureListItem';
 
-const FeatureList: FC = (): ReactElement => {
+const RADAR_CARD_HEIGHT = sizes.screenHeight / 2.5;
+
+interface IFeatureList {
+  onScroll:
+    | ((event: NativeSyntheticEvent<NativeScrollEvent>) => void)
+    | Animated.Node<((event: NativeSyntheticEvent<NativeScrollEvent>) => void) | undefined>
+    | undefined;
+}
+
+const FeatureList: FC<IFeatureList> = ({ onScroll }): ReactElement => {
   const [chartData, setChartData] = useState<IChartData[]>([]);
+  const AnimatedSectionList = Animated.createAnimatedComponent(SectionList);
 
   useEffect(() => {
     REST.getData().then((d: IChartData[]) => {
@@ -17,7 +28,7 @@ const FeatureList: FC = (): ReactElement => {
   }, []);
 
   return (
-    <SectionList
+    <AnimatedSectionList
       contentContainerStyle={styles.contentContainerStyle}
       sections={[
         { title: 'Intelligence', data: chartData },
@@ -28,21 +39,22 @@ const FeatureList: FC = (): ReactElement => {
       ]}
       renderSectionHeader={({ section: { title } }) => <FeatureListHeader title={title} />}
       renderItem={({ item }) => {
-        console.log(item, 'item <<<<');
         const itemKeyValue = Object.keys(item);
-        console.log(itemKeyValue, 'itemKeyValue <<<<');
 
         return <FeatureListItem title={itemKeyValue[1]} />;
       }}
       keyExtractor={(item: IChartData, index: number) => `${index}`}
       showsVerticalScrollIndicator={false}
+      onScroll={onScroll}
+      scrollEventThrottle={16}
     />
   );
 };
 
 const styles = StyleSheet.create({
   contentContainerStyle: {
-    paddingBottom: sizes.screenHeight / 2,
+    paddingBottom: 50,
+    paddingTop: RADAR_CARD_HEIGHT,
   },
 });
 

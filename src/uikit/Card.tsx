@@ -1,4 +1,4 @@
-import React, { FC, ReactChild, ReactElement } from 'react';
+import React, { Component, ReactChild } from 'react';
 import { View, StyleSheet, ViewStyle } from 'react-native';
 
 import { sizes, themeProvider } from '../theme';
@@ -8,7 +8,13 @@ interface ICard {
   style?: ViewStyle | ViewStyle[];
 }
 
-const Card: FC<ICard> = ({ children, style }): ReactElement => <View style={[styles.card, style]}>{children}</View>;
+class Card extends Component<ICard> {
+  render() {
+    const { style, children } = this.props;
+
+    return <View style={[styles.card, style]}>{children}</View>;
+  }
+}
 
 const styles = StyleSheet.create({
   card: {

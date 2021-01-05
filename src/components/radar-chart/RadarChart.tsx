@@ -1,14 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import { VictoryChart, VictoryTheme, VictoryGroup, VictoryArea, VictoryPolarAxis, VictoryLabel } from 'victory-native';
+
 import { themeProvider } from '../../theme';
 import { REST } from '../../rest';
 import { IChartData, IChartMaxima } from '../../types/chartData';
-
 import { radarChartSelectors } from './duck';
 
 const { colors } = themeProvider;
 
-const RadarChart = () => {
+interface IRadarChart {}
+
+const RadarChart: FC<IRadarChart> = () => {
   const [chartData, setChartData] = useState<object[]>([]);
   const [chartMaxima, setChartMaxima] = useState<IChartMaxima | null>(null);
 
