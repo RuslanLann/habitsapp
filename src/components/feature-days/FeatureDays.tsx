@@ -33,10 +33,10 @@ const FeatureDay: FC<IFeatureDay> = ({ text }) => (
 const FeatureDays: FC<IFeatureDays> = ({ text }): ReactElement => {
   return (
     <View style={styles.container}>
-      <FeatureDay text={text && 'Th'} />
-      <FeatureDay text={text && 'We'} />
-      <FeatureDay text={text && 'Tu'} />
-      <FeatureDay text={text && 'Mo'} />
+      <FeatureDay text={text ? 'Th' : ''} />
+      <FeatureDay text={text ? 'We' : ''} />
+      <FeatureDay text={text ? 'Tu' : ''} />
+      <FeatureDay text={text ? 'Mo' : ''} />
     </View>
   );
 };

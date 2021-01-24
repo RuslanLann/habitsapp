@@ -4,7 +4,7 @@ import { VictoryChart, VictoryTheme, VictoryGroup, VictoryArea, VictoryPolarAxis
 import { themeProvider } from '../../theme';
 import { REST } from '../../rest';
 import { IChartData, IChartMaxima } from '../../types/chartData';
-import { radarChartSelectors } from './duck';
+import { radarChartSelectors } from './utils';
 
 const { colors } = themeProvider;
 

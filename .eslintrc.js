@@ -64,7 +64,6 @@ module.exports = {
     'no-empty': 'error',
     'no-duplicate-case': 'error',
     'no-debugger': 'error',
-    'no-console': 'error',
     'no-await-in-loop': 'error',
     'no-async-promise-executor': 'error',
     'getter-return': 'error',

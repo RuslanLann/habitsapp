@@ -4,16 +4,25 @@ import { NavigationContainer } from '@react-navigation/native';
 import { AppearanceProvider, useColorScheme } from 'react-native-appearance';
 
 import { theme } from './theme';
-import { TabNavigator } from './navigation';
+import { AuthNavigator, TabNavigator } from './navigation';
+import useAuthentication from './hooks/useAuthenticate';
 
 const App = () => {
   const scheme = useColorScheme();
+  const themeType = scheme === 'dark' ? theme.darkTheme : theme.lightTheme;
+  const { authToken } = useAuthentication();
 
   return (
     <AppearanceProvider>
-      <NavigationContainer theme={scheme === 'dark' ? theme.darkTheme : theme.lightTheme}>
-        <TabNavigator />
-      </NavigationContainer>
+      {authToken ? (
+        <NavigationContainer theme={themeType}>
+          <TabNavigator />
+        </NavigationContainer>
+      ) : (
+        <NavigationContainer theme={themeType}>
+          <AuthNavigator />
+        </NavigationContainer>
+      )}
     </AppearanceProvider>
   );
 };
