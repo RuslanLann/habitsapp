@@ -1,7 +1,7 @@
 import React, { Component, ReactChild } from 'react';
 import { View, StyleSheet, ViewStyle } from 'react-native';
 
-import { sizes, themeProvider } from '../theme';
+import { sizes, themeProvider } from '../../theme';
 
 interface ICard {
   children: ReactChild | ReactChild[];
