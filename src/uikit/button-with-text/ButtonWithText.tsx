@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { Text, StyleSheet, TouchableOpacity } from 'react-native';
 
-import { responsivePixels, sizes, themeProvider } from '../../theme';
+import { sizes, themeProvider } from '../../theme';
 
 interface IButtonWithText {
   title: string;
@@ -30,15 +30,15 @@ const styles = StyleSheet.create({
   },
   buttonTypeFilled: {
     width: '100%',
-    height: responsivePixels.getHeightPx(40),
-    marginBottom: responsivePixels.getHeightPx(15),
+    height: sizes.buttonHeight,
+    marginBottom: sizes.buttonMarginBottom,
     backgroundColor: themeProvider.colors.primary,
   },
   buttonLoadingStyles: {
     opacity: 0.5,
   },
   text: {
-    fontSize: responsivePixels.getWidthPx(18),
+    fontSize: sizes.mediumBigFontSize,
     color: themeProvider.colors.primary,
   },
   textFilledType: {
