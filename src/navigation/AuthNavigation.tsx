@@ -1,15 +1,15 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 
-import { AuthScreen } from '../screens';
+import { SignInScreen, SignUpScreen } from '../screens';
 
 const Stack = createStackNavigator();
 
 const AuthNavigation = () => {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
-      <Stack.Screen name="SignIn" component={AuthScreen} />
-      {/* <Stack.Screen name="SignUp" component={SignUpScreen} /> */}
+      <Stack.Screen name="SignInScreen" component={SignInScreen} />
+      <Stack.Screen name="SignUpScreen" component={SignUpScreen} />
     </Stack.Navigator>
   );
 };

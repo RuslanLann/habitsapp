@@ -1,21 +1,21 @@
+import { StackScreenProps } from '@react-navigation/stack';
 import React, { FC } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import { StackScreenProps } from '@react-navigation/stack';
 
 import { responsivePixels, sizes, themeProvider } from '../../theme';
 import { ButtonWithText } from '../../uikit';
 
-interface ISignInScreen extends StackScreenProps<any> {}
+interface ISignUpScreen extends StackScreenProps<any> {}
 
-const SignInScreen: FC<ISignInScreen> = ({ navigation }) => {
-  const onSignInPress = () => {
-    navigation.navigate('SignUpScreen');
+const SignUpScreen: FC<ISignUpScreen> = ({ navigation }) => {
+  const onSignUpPress = () => {
+    navigation.navigate('SignInScreen');
   };
 
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>Enter your email and password</Text>
-      <ButtonWithText title="Sign In" isLoading={false} onPress={onSignInPress} />
+      <Text style={styles.text}>Enter your email and set password</Text>
+      <ButtonWithText onPress={onSignUpPress} title="Sign Up" isLoading={false} type="transparent" />
     </View>
   );
 };
@@ -35,4 +35,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default SignInScreen;
+export default SignUpScreen;
