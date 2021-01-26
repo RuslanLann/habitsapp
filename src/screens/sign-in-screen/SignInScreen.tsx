@@ -8,14 +8,17 @@ import { ButtonWithText } from '../../uikit';
 interface ISignInScreen extends StackScreenProps<any> {}
 
 const SignInScreen: FC<ISignInScreen> = ({ navigation }) => {
-  const onSignInPress = () => {
+  const onSignInPress = () => {};
+
+  const onSignUpPress = () => {
     navigation.navigate('SignUpScreen');
   };
 
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>Enter your email and password</Text>
+      <Text style={styles.title}>Enter your email and password</Text>
       <ButtonWithText title="Sign In" isLoading={false} onPress={onSignInPress} />
+      <ButtonWithText title="Sign Up" isLoading={false} onPress={onSignUpPress} type="transparent" />
     </View>
   );
 };
@@ -28,8 +31,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: themeProvider.colors.background,
   },
-  text: {
-    marginBottom: 30,
+  title: {
+    marginBottom: responsivePixels.getHeightPx(30),
     fontSize: responsivePixels.getWidthPx(24),
     fontWeight: '600',
   },

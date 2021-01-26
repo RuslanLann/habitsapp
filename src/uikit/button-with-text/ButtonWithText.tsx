@@ -24,20 +24,21 @@ const ButtonWithText: FC<IButtonWithText> = ({ title, isLoading, type = 'filled'
 
 const styles = StyleSheet.create({
   button: {
-    height: responsivePixels.getHeightPx(40),
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: sizes.borderRadius,
   },
   buttonTypeFilled: {
     width: '100%',
+    height: responsivePixels.getHeightPx(40),
+    marginBottom: responsivePixels.getHeightPx(15),
     backgroundColor: themeProvider.colors.primary,
   },
   buttonLoadingStyles: {
     opacity: 0.5,
   },
   text: {
-    fontSize: responsivePixels.getWidthPx(16),
+    fontSize: responsivePixels.getWidthPx(18),
     color: themeProvider.colors.primary,
   },
   textFilledType: {
