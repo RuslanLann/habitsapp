@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { Text, StyleSheet, TouchableOpacity, ViewStyle, View } from 'react-native';
 
 import { sizes, themeProvider } from '../../theme';
 
@@ -8,12 +8,18 @@ interface IButtonWithText {
   isLoading: boolean;
   onPress: () => void;
   type?: 'filled' | 'transparent';
+  style?: ViewStyle | ViewStyle[];
 }
 
-const ButtonWithText: FC<IButtonWithText> = ({ title, isLoading, type = 'filled', onPress }) => {
+const ButtonWithText: FC<IButtonWithText> = ({ style, title, isLoading, type = 'filled', onPress }) => {
   return (
     <TouchableOpacity
-      style={[styles.button, type === 'filled' && styles.buttonTypeFilled, isLoading && styles.buttonLoadingStyles]}
+      style={[
+        styles.button,
+        type === 'filled' && styles.buttonTypeFilled,
+        isLoading && styles.buttonLoadingStyles,
+        style,
+      ]}
       onPress={onPress}
       disabled={isLoading}
     >

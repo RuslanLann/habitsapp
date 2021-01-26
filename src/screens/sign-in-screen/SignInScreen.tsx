@@ -31,7 +31,7 @@ const SignInScreen: FC<ISignInScreen> = ({ navigation }) => {
         autoCompleteType="off"
         secureTextEntry={true}
       />
-      <ButtonWithText title="Sign In" isLoading={false} onPress={onSignInPress} />
+      <ButtonWithText title="Sign In" isLoading={false} onPress={onSignInPress} style={styles.buttonStyle} />
       <ButtonWithText title="Sign Up" isLoading={false} onPress={onSignUpPress} type="transparent" />
     </View>
   );
@@ -46,9 +46,12 @@ const styles = StyleSheet.create({
     backgroundColor: themeProvider.colors.background,
   },
   title: {
-    marginBottom: responsivePixels.getHeightPx(30),
-    fontSize: responsivePixels.getWidthPx(24),
+    marginBottom: sizes.largeVerticalMargin,
+    fontSize: sizes.largeFontSize,
     fontWeight: '600',
+  },
+  buttonStyle: {
+    marginTop: sizes.largeVerticalMargin,
   },
 });
 
