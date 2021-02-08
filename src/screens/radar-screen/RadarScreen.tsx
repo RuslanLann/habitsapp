@@ -2,9 +2,9 @@ import React from 'react';
 import { SafeAreaView, StatusBar, StyleSheet, View, ViewStyle } from 'react-native';
 import Animated, { useAnimatedScrollHandler, useAnimatedStyle, useSharedValue } from 'react-native-reanimated';
 
-import { AddDataButton, FeatureList, RadarChart } from '../../components';
+import { FeatureList, RadarChart } from '../../components';
 import { sizes, themeProvider } from '../../theme';
-import { Card } from '../../uikit';
+import { AddDataButton, Card } from '../../uikit';
 
 const RADAR_CARD_HEIGHT = sizes.screenHeight / 2.5;
 
