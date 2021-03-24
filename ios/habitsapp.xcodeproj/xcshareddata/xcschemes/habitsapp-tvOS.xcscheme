@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "2D02E47A1E0B4A5D006451C7"
-               BuildableName = "habitsapp-tvOS.app"
-               BlueprintName = "habitsapp-tvOS"
-               ReferencedContainer = "container:habitsapp.xcodeproj">
+               BuildableName = "Habitsapp-tvOS.app"
+               BlueprintName = "Habitsapp-tvOS"
+               ReferencedContainer = "container:Habitsapp.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "2D02E48F1E0B4A5D006451C7"
-               BuildableName = "habitsapp-tvOSTests.xctest"
-               BlueprintName = "habitsapp-tvOSTests"
-               ReferencedContainer = "container:habitsapp.xcodeproj">
+               BuildableName = "Habitsapp-tvOSTests.xctest"
+               BlueprintName = "Habitsapp-tvOSTests"
+               ReferencedContainer = "container:Habitsapp.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -55,9 +55,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "2D02E47A1E0B4A5D006451C7"
-            BuildableName = "habitsapp-tvOS.app"
-            BlueprintName = "habitsapp-tvOS"
-            ReferencedContainer = "container:habitsapp.xcodeproj">
+            BuildableName = "Habitsapp-tvOS.app"
+            BlueprintName = "Habitsapp-tvOS"
+            ReferencedContainer = "container:Habitsapp.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -72,9 +72,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "2D02E47A1E0B4A5D006451C7"
-            BuildableName = "habitsapp-tvOS.app"
-            BlueprintName = "habitsapp-tvOS"
-            ReferencedContainer = "container:habitsapp.xcodeproj">
+            BuildableName = "Habitsapp-tvOS.app"
+            BlueprintName = "Habitsapp-tvOS"
+            ReferencedContainer = "container:Habitsapp.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
