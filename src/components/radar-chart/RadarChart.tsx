@@ -1,30 +1,24 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC } from 'react';
 import { VictoryChart, VictoryTheme, VictoryGroup, VictoryArea, VictoryPolarAxis, VictoryLabel } from 'victory-native';
 
-import { themeProvider } from '../../theme';
-import { REST } from '../../rest';
-import { IChartData, IChartMaxima } from '../../types/chartData';
-import { radarChartSelectors } from './utils';
+import { IChartMaxima, IProcessedData } from './utils/types';
 
-const { colors } = themeProvider;
+interface IRadarChart {
+  chartData: IProcessedData[][];
+  chartMaxima: IChartMaxima | null;
+  colors: {
+    primary: string;
+    notification: string;
+    text: string;
+    additional: string;
+  };
+}
 
-interface IRadarChart {}
-
-const RadarChart: FC<IRadarChart> = () => {
-  const [chartData, setChartData] = useState<object[]>([]);
-  const [chartMaxima, setChartMaxima] = useState<IChartMaxima | null>(null);
-
-  useEffect(() => {
-    REST.getData().then((d: IChartData[]) => {
-      setChartData(radarChartSelectors.processData(d));
-      setChartMaxima(radarChartSelectors.getMaxima(d));
-    });
-  }, []);
-
+const RadarChart: FC<IRadarChart> = ({ chartData, chartMaxima, colors }) => {
   return (
     <VictoryChart polar theme={VictoryTheme.material} domain={{ y: [0, 1] }}>
       <VictoryGroup
-        colorScale={[colors.primary, colors.notification, colors.turq]}
+        colorScale={[colors.primary, colors.notification, colors.additional]}
         style={{ data: { fillOpacity: 0.2, strokeWidth: 2 } }}
         animate={{
           duration: 600,

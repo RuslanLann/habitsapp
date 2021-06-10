@@ -85,5 +85,6 @@ module.exports = {
     'react-native/no-inline-styles': 0,
     'react-native/no-raw-text': 0,
     complexity: ['error', 25],
+    'arrow-parens': null,
   },
 };

@@ -1,25 +1,24 @@
-import { IChartData, IChartMaxima } from '../../../types/chartData';
+import { IChartData, IChartMaxima, IProcessedData } from './types';
 
 // from victory native example
-const getMaxima = (data: IChartData[]): IChartMaxima => {
+export const getMaxima = (data: IChartData[]): IChartMaxima => {
   const groupedData = Object.keys(data[0]).reduce((memo: object, key) => {
     memo[key] = data.map((d: object) => d[key]);
     return memo;
   }, {});
-  return Object.keys(groupedData).reduce((memo, key) => {
+  const chartMaxima = Object.keys(groupedData).reduce((memo, key) => {
     memo[key] = Math.max(...groupedData[key]);
     return memo;
   }, {});
+
+  return chartMaxima as IChartMaxima;
 };
 
 // from victory native example
-const processData = (data: IChartData[]) => {
+export const processData = (data: IChartData[]): IProcessedData[][] => {
   const maxByGroup = getMaxima(data);
   const makeDataArray = (d: object) => Object.keys(d).map((key) => ({ x: key, y: d[key] / maxByGroup[key] }));
-  return data.map((datum) => makeDataArray(datum));
-};
+  const processedData = data.map((datum) => makeDataArray(datum));
 
-export default {
-  getMaxima,
-  processData,
+  return processedData;
 };
