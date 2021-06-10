@@ -63,6 +63,7 @@ const styles = StyleSheet.create({
   },
   day: {
     textAlign: 'center',
+    color: themeProvider.colors.text,
   },
   icon: {
     height: '100%',
