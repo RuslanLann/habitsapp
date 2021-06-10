@@ -10,7 +10,7 @@ interface IStore {
 
 const createStore: IStore = {
   getState: () => ({
-    isDarkTheme: false,
+    isDarkTheme: true,
   }),
 };
 
