@@ -55,7 +55,13 @@
       "jsx",
       "json",
       "node"
+    ],
+    "transformIgnorePatterns": [
+      "node_modules/(?!victory-native)/"
     ]
+  },
+  "resolutions": {
+    "d3-array": "2.3.3"
   },
   "license": "MIT"
 }

@@ -3,7 +3,7 @@ import { StyleSheet, TouchableOpacity, View, ViewStyle } from 'react-native';
 import Icon from 'react-native-vector-icons/dist/Ionicons';
 
 import { sizes, themeProvider } from '../../theme';
-import { helpers } from '../../utils';
+import { isIphoneXTernary } from '../../utils/helpers/commonHelpers';
 
 const BUTTON_SIZE = 50;
 const ICON_SIZE = 30;
@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
     height: BUTTON_SIZE,
     width: BUTTON_SIZE,
     position: 'absolute',
-    bottom: helpers.isIphoneXTernary(25, 15),
+    bottom: isIphoneXTernary(25, 15),
     left: sizes.screenWidth / 2 - BUTTON_SIZE / 2,
     ...themeProvider.boxShadow,
     shadowColor: themeProvider.colors.primary,
