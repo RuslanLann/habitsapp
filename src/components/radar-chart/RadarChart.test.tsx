@@ -50,7 +50,3 @@ test('renders correctly', () => {
 
   expect(tree).toMatchSnapshot();
 });
-
-afterAll(async () => {
-  await new Promise<void>((resolve) => setTimeout(() => resolve(), 500)); // avoid jest open handle error
-});
