@@ -15,6 +15,8 @@
     "@react-navigation/bottom-tabs": "^5.11.11",
     "@react-navigation/native": "^5.9.4",
     "@react-navigation/stack": "^5.14.5",
+    "i": "^0.3.6",
+    "npm": "^7.20.1",
     "react": "17.0.2",
     "react-native": "^0.64.2",
     "react-native-appearance": "^0.3.4",
@@ -44,6 +46,7 @@
     "jest": "^27.0.6",
     "metro-react-native-babel-preset": "^0.66.2",
     "react-test-renderer": "17.0.2",
+    "reactotron-react-native": "^5.0.0",
     "typescript": "^4.3.5"
   },
   "jest": {
