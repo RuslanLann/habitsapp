@@ -1,12 +1,21 @@
 import React, { FC, ReactElement, useEffect, useState } from 'react';
-import { StyleSheet, SectionList, NativeSyntheticEvent, NativeScrollEvent, ViewStyle } from 'react-native';
+import {
+  StyleSheet,
+  SectionList,
+  NativeSyntheticEvent,
+  NativeScrollEvent,
+  ViewStyle,
+  ActivityIndicator,
+} from 'react-native';
 import Animated from 'react-native-reanimated';
 
 import { REST } from '../../rest';
 import { sizes } from '../../theme';
-import { ChartData } from '../radar-chart/utils/types';
 import FeatureListHeader from '../feature-list-header/FeatureListHeader';
 import FeatureListItem from '../feature-list-item/FeatureListItem';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '../../store/configureStore';
+import { radarSlice } from '../../screens/radar-screen/store';
 
 const RADAR_CARD_HEIGHT = sizes.screenHeight / 2.5;
 
@@ -18,37 +27,34 @@ interface FeatureList {
 }
 
 const FeatureList: FC<FeatureList> = ({ onScroll }): ReactElement => {
-  const [chartData, setChartData] = useState<ChartData[]>([]);
+  const dispatch = useDispatch();
+  const setFeatureList = (data: FeatureListItem[]) => dispatch(radarSlice.actions.setFeatureList(data));
+
+  const featureList = useSelector((state: RootState) => state.radar.featureList);
+
   const AnimatedSectionList = Animated.createAnimatedComponent(SectionList);
 
   useEffect(() => {
-    REST.getData().then((d: ChartData[]) => {
-      setChartData(d);
+    REST.fetchFeatureListData().then((data) => {
+      setFeatureList(data);
     });
   }, []);
+
+  if (featureList.length === 0) {
+    return <ActivityIndicator />;
+  }
 
   return (
     <AnimatedSectionList
       contentContainerStyle={styles.contentContainerStyle}
-      sections={[
-        { title: 'Intelligence', data: chartData },
-        { title: 'Strength', data: chartData },
-        { title: 'Charisma', data: chartData },
-        { title: 'Stealth', data: chartData },
-        { title: 'Luck', data: chartData },
-        { title: 'Intelligence', data: chartData },
-        { title: 'Strength', data: chartData },
-        { title: 'Charisma', data: chartData },
-        { title: 'Stealth', data: chartData },
-        { title: 'Luck', data: chartData },
-      ]}
+      sections={featureList}
       renderSectionHeader={({ section: { title } }) => <FeatureListHeader title={title} />}
       renderItem={({ item, index }) => {
         const itemKeyValue = Object.keys(item);
 
         return <FeatureListItem title={itemKeyValue[1]} index={index} />;
       }}
-      keyExtractor={(item: ChartData, index: number) => `${index}`}
+      keyExtractor={(item: FeatureListItem, index: number) => `${item.title}-${index}`}
       showsVerticalScrollIndicator={false}
       onScroll={onScroll}
       scrollEventThrottle={16}

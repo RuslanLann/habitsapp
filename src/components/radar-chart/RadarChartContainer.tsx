@@ -1,28 +1,39 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 import RadarChart from './RadarChart';
 import { themeProvider } from '../../theme';
 import { REST } from '../../rest';
-import { ChartData, ChartMaxima, ProcessedData } from './utils/types';
+import { ChartMaxima, ProcessedData } from './utils/types';
 import { getMaxima, processData } from './utils/helpers';
+import { RootState } from '../../store/configureStore';
+import { CharacterData } from '../../rest/rest';
+import { radarSlice } from '../../screens/radar-screen/store';
 
 const { colors } = themeProvider;
 
 const RadarChartContainer = () => {
-  const [chartData, setChartData] = useState<ProcessedData[][]>([]);
-  const [chartMaxima, setChartMaxima] = useState<ChartMaxima | null>(null);
+  const dispatch = useDispatch();
+  const setRadarData = (radarChartData: ProcessedData[][]) => dispatch(radarSlice.actions.setRadarData(radarChartData));
+  const setRadarMaxima = (radarChartMaxima: ChartMaxima) =>
+    dispatch(radarSlice.actions.setRadarMaxima(radarChartMaxima));
+
+  const radarData = useSelector((state: RootState) => state.radar.radarData);
+  const radarMaxima = useSelector((state: RootState) => state.radar.radarMaxima);
 
   useEffect(() => {
-    REST.getData().then((d: ChartData[]) => {
-      setChartData(processData(d));
-      setChartMaxima(getMaxima(d));
+    REST.fetchChartData().then((data: CharacterData[]) => {
+      const chartData = processData(data);
+      const chartMaxima = getMaxima(data);
+      setRadarData(chartData);
+      setRadarMaxima(chartMaxima);
     });
   }, []);
 
   return (
     <RadarChart
-      chartData={chartData}
-      chartMaxima={chartMaxima}
+      chartData={radarData}
+      chartMaxima={radarMaxima}
       colors={{
         primary: colors.primary,
         notification: colors.notification,
@@ -32,9 +43,5 @@ const RadarChartContainer = () => {
     />
   );
 };
-
-// const mapStateToProps = () => ({});
-
-// const mapDispatchToProps = {};
 
 export default RadarChartContainer;

@@ -2,10 +2,12 @@ import 'react-native-gesture-handler';
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { AppearanceProvider, useColorScheme } from 'react-native-appearance';
+import { Provider } from 'react-redux';
 
 import { theme } from './theme';
 import { AuthNavigator, TabNavigator } from './navigation';
 import { useAuthentication } from './hooks';
+import { store } from './store';
 
 const App = () => {
   const scheme = useColorScheme();
@@ -13,17 +15,19 @@ const App = () => {
   const { authToken } = useAuthentication();
 
   return (
-    <AppearanceProvider>
-      {authToken ? (
-        <NavigationContainer theme={themeType}>
-          <TabNavigator />
-        </NavigationContainer>
-      ) : (
-        <NavigationContainer theme={themeType}>
-          <AuthNavigator />
-        </NavigationContainer>
-      )}
-    </AppearanceProvider>
+    <Provider store={store}>
+      <AppearanceProvider>
+        {authToken ? (
+          <NavigationContainer theme={themeType}>
+            <TabNavigator />
+          </NavigationContainer>
+        ) : (
+          <NavigationContainer theme={themeType}>
+            <AuthNavigator />
+          </NavigationContainer>
+        )}
+      </AppearanceProvider>
+    </Provider>
   );
 };
 

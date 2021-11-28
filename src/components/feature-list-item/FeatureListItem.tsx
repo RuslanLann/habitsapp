@@ -1,5 +1,6 @@
 import React, { FC, ReactElement } from 'react';
 import { Text, StyleSheet, ViewStyle, TextStyle } from 'react-native';
+import { CharacterData } from '../../rest/rest';
 
 import { themeProvider, responsivePixels } from '../../theme';
 import { Card } from '../../uikit';
@@ -7,6 +8,7 @@ import FeatureDays from '../feature-days/FeatureDays';
 
 interface FeatureListItem {
   title: string;
+  data: CharacterData[];
 }
 
 const FeatureListItem: FC<FeatureListItem> = ({ title }): ReactElement => {

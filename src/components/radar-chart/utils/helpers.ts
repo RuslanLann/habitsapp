@@ -1,7 +1,8 @@
-import { ChartData, ChartMaxima, ProcessedData } from './types';
+import { CharacterData } from '../../../rest/rest';
+import { ChartMaxima, ProcessedData } from './types';
 
 // from victory native example
-export const getMaxima = (data: ChartData[]): ChartMaxima => {
+export const getMaxima = (data: CharacterData[]): ChartMaxima => {
   const groupedData = Object.keys(data[0]).reduce((memo: object, key) => {
     memo[key] = data.map((d: object) => d[key]);
     return memo;
@@ -15,7 +16,7 @@ export const getMaxima = (data: ChartData[]): ChartMaxima => {
 };
 
 // from victory native example
-export const processData = (data: ChartData[]): ProcessedData[][] => {
+export const processData = (data: CharacterData[]): ProcessedData[][] => {
   const maxByGroup = getMaxima(data);
   const makeDataArray = (d: object) => Object.keys(d).map((key) => ({ x: key, y: d[key] / maxByGroup[key] }));
   const processedData = data.map((datum) => makeDataArray(datum));

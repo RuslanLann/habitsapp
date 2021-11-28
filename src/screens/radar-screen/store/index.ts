@@ -1,1 +1,1 @@
-export { default as radarReducer } from './radarReducer';
+export { default as radarSlice } from './radarReducer';

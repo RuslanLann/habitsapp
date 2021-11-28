@@ -26,7 +26,7 @@ const RadarChart: FC<RadarChart> = ({ chartData, chartMaxima, colors }) => {
         }}
       >
         {chartData.map((data, i) => (
-          <VictoryArea key={i} data={data} />
+          <VictoryArea key={data[0].x} data={data} />
         ))}
       </VictoryGroup>
       {chartMaxima &&
