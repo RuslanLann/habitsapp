@@ -4,7 +4,7 @@ import Animated from 'react-native-reanimated';
 
 import { REST } from '../../rest';
 import { sizes } from '../../theme';
-import { IChartData } from '../../types/chartData';
+import { IChartData } from '../radar-chart/utils/types';
 import FeatureListHeader from '../feature-list-header/FeatureListHeader';
 import FeatureListItem from '../feature-list-item/FeatureListItem';
 
@@ -43,10 +43,10 @@ const FeatureList: FC<IFeatureList> = ({ onScroll }): ReactElement => {
         { title: 'Luck', data: chartData },
       ]}
       renderSectionHeader={({ section: { title } }) => <FeatureListHeader title={title} />}
-      renderItem={({ item }) => {
+      renderItem={({ item, index }) => {
         const itemKeyValue = Object.keys(item);
 
-        return <FeatureListItem title={itemKeyValue[1]} />;
+        return <FeatureListItem title={itemKeyValue[1]} index={index} />;
       }}
       keyExtractor={(item: IChartData, index: number) => `${index}`}
       showsVerticalScrollIndicator={false}
