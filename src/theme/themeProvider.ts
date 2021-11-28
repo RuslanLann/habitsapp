@@ -8,6 +8,7 @@ interface Store {
   getState: () => State;
 }
 
+// TODO: move to global store
 const createStore: Store = {
   getState: () => ({
     isDarkTheme: true,

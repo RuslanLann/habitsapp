@@ -6,6 +6,7 @@ interface GetItemOptions {
 }
 
 class AsyncStorageUtil {
+  // вопрос: стоит ли писать такие хелпер/утил классы или все делать функциями? в чем разница между хелперами и утилитами?
   static setItem = (item: string, value: string) => {
     AsyncStorage.setItem(item, value);
   };

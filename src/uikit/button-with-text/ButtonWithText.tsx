@@ -19,7 +19,7 @@ const ButtonWithText: FC<ButtonWithText> = ({ style, title, isLoading, type = 'f
         type === 'filled' && styles.buttonTypeFilled,
         isLoading && styles.buttonLoadingStyles,
         style,
-      ]}
+      ]} // вопрос: стоит ли так компановать стили или лучше исполозовать styleSheetFlatten?
       onPress={onPress}
       disabled={isLoading}
     >

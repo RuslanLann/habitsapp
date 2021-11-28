@@ -18,20 +18,8 @@ const SignUpScreen: FC<SignUpScreen> = ({ navigation }) => {
     <View style={styles.container}>
       <Text style={styles.title}>Enter your name, email and set password</Text>
       <Input placeholder="name" />
-      <Input
-        placeholder="email"
-        textContentType="emailAddress"
-        keyboardType="email-address"
-        autoCapitalize="none"
-        autoCompleteType="off"
-      />
-      <Input
-        placeholder="password"
-        textContentType="password"
-        autoCapitalize="none"
-        autoCompleteType="off"
-        secureTextEntry={true}
-      />
+      <Input placeholder="email" textContentType="emailAddress" keyboardType="email-address" autoCapitalize="none" />
+      <Input placeholder="password" textContentType="password" autoCapitalize="none" secureTextEntry={true} />
       <ButtonWithText style={styles.buttonStyle} onPress={onSignUpPress} title="Sign Up" isLoading={false} />
       <ButtonWithText title="Back" isLoading={false} onPress={onBackPress} type="transparent" />
     </View>

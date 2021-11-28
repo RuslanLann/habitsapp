@@ -1,12 +1,5 @@
-import React, { FC, ReactElement, useEffect, useState } from 'react';
-import {
-  StyleSheet,
-  SectionList,
-  NativeSyntheticEvent,
-  NativeScrollEvent,
-  ViewStyle,
-  ActivityIndicator,
-} from 'react-native';
+import React, { FC, ReactElement, useEffect } from 'react';
+import { StyleSheet, SectionList, NativeSyntheticEvent, NativeScrollEvent } from 'react-native';
 import Animated from 'react-native-reanimated';
 
 import { REST } from '../../rest';
@@ -40,21 +33,17 @@ const FeatureList: FC<FeatureList> = ({ onScroll }): ReactElement => {
     });
   }, []);
 
-  if (featureList.length === 0) {
-    return <ActivityIndicator />;
-  }
-
   return (
     <AnimatedSectionList
       contentContainerStyle={styles.contentContainerStyle}
       sections={featureList}
-      renderSectionHeader={({ section: { title } }) => <FeatureListHeader title={title} />}
+      renderSectionHeader={({ section: { title } }) => <FeatureListHeader title={title} />} // вопрос: стрелочные функции в пропсах компонента
       renderItem={({ item, index }) => {
         const itemKeyValue = Object.keys(item);
 
         return <FeatureListItem title={itemKeyValue[1]} index={index} />;
-      }}
-      keyExtractor={(item: FeatureListItem, index: number) => `${item.title}-${index}`}
+      }} // вопрос: стрелочные функции в пропсах компонента
+      keyExtractor={(item: FeatureListItem, index: number) => `${item.title}-${index}`} // вопрос: стрелочные функции в пропсах компонента
       showsVerticalScrollIndicator={false}
       onScroll={onScroll}
       scrollEventThrottle={16}
