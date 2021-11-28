@@ -5,7 +5,7 @@ import { AppearanceProvider, useColorScheme } from 'react-native-appearance';
 
 import { theme } from './theme';
 import { AuthNavigator, TabNavigator } from './navigation';
-import useAuthentication from './hooks/useAuthenticate';
+import { useAuthentication } from './hooks';
 
 const App = () => {
   const scheme = useColorScheme();
