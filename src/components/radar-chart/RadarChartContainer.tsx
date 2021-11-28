@@ -4,7 +4,7 @@ import RadarChart from './RadarChart';
 import { themeProvider } from '../../theme';
 import { REST } from '../../rest';
 import { ChartData, ChartMaxima, ProcessedData } from './utils/types';
-import { getMaxima, processData } from './utils/selectors';
+import { getMaxima, processData } from './utils/helpers';
 
 const { colors } = themeProvider;
 
