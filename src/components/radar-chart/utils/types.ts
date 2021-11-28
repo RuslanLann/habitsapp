@@ -1,12 +1,12 @@
-export interface IChartData {
+export interface ChartData {
   [key: string]: number;
 }
 
-export interface IChartMaxima {
+export interface ChartMaxima {
   [key: string]: number;
 }
 
-export interface IProcessedData {
+export interface ProcessedData {
   x: string;
   y: number;
 }
