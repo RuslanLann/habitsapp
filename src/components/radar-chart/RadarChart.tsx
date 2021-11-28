@@ -1,11 +1,11 @@
 import React, { FC } from 'react';
 import { VictoryChart, VictoryTheme, VictoryGroup, VictoryArea, VictoryPolarAxis, VictoryLabel } from 'victory-native';
 
-import { IChartMaxima, IProcessedData } from './utils/types';
+import { ChartMaxima, ProcessedData } from './utils/types';
 
-interface IRadarChart {
-  chartData: IProcessedData[][];
-  chartMaxima: IChartMaxima | null;
+interface RadarChart {
+  chartData: ProcessedData[][];
+  chartMaxima: ChartMaxima | null;
   colors: {
     primary: string;
     notification: string;
@@ -14,7 +14,7 @@ interface IRadarChart {
   };
 }
 
-const RadarChart: FC<IRadarChart> = ({ chartData, chartMaxima, colors }) => {
+const RadarChart: FC<RadarChart> = ({ chartData, chartMaxima, colors }) => {
   return (
     <VictoryChart polar theme={VictoryTheme.material} domain={{ y: [0, 1] }}>
       <VictoryGroup

@@ -8,11 +8,11 @@ import { isIphoneXTernary } from '../../utils/helpers/commonHelpers';
 const BUTTON_SIZE = 50;
 const ICON_SIZE = 30;
 
-interface IAddDataButton {
+interface AddDataButton {
   onPress: () => void;
 }
 
-const AddDataButton: FC<IAddDataButton> = ({ onPress }): ReactElement => (
+const AddDataButton: FC<AddDataButton> = ({ onPress }): ReactElement => (
   <View style={styles.container}>
     <TouchableOpacity style={styles.button} onPress={onPress}>
       <Icon name="add-outline" size={ICON_SIZE} color="#ffffff" style={styles.icon} />

@@ -6,14 +6,14 @@ import { responsivePixels, sizes, themeProvider } from '../../theme';
 
 const CONTAINER_WIDTH = sizes.screenWidth * 0.6;
 
-interface IFeatureDays {
+interface FeatureDays {
   text: boolean;
 }
-interface IFeatureDay {
+interface FeatureDay {
   text?: string;
 }
 
-const FeatureDay: FC<IFeatureDay> = ({ text }) => (
+const FeatureDay: FC<FeatureDay> = ({ text }) => (
   <View style={styles.dayContainer}>
     {text ? (
       <Text style={styles.day}>{text}</Text>
@@ -30,7 +30,7 @@ const FeatureDay: FC<IFeatureDay> = ({ text }) => (
   </View>
 );
 
-const FeatureDays: FC<IFeatureDays> = ({ text }): ReactElement => {
+const FeatureDays: FC<FeatureDays> = ({ text }): ReactElement => {
   return (
     <View style={styles.container}>
       <FeatureDay text={text ? 'Th' : ''} />

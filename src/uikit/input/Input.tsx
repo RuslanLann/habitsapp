@@ -2,9 +2,9 @@ import React, { FC } from 'react';
 import { TextInput, StyleSheet, TextInputProps } from 'react-native';
 import { sizes, themeProvider } from '../../theme';
 
-interface IInput extends TextInputProps {}
+interface Input extends TextInputProps {}
 
-const Input: FC<IInput> = ({ style, ...props }) => {
+const Input: FC<Input> = ({ style, ...props }) => {
   return <TextInput style={[styles.input, style]} {...props} />;
 };
 

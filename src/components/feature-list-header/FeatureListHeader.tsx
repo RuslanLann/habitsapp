@@ -5,11 +5,11 @@ import { themeProvider, responsivePixels, sizes } from '../../theme';
 import { Card } from '../../uikit';
 import FeatureDays from '../feature-days/FeatureDays';
 
-interface IFeatureListHeader {
+interface FeatureListHeader {
   title: string;
 }
 
-const FeatureListHeader: FC<IFeatureListHeader> = ({ title }): ReactElement => {
+const FeatureListHeader: FC<FeatureListHeader> = ({ title }): ReactElement => {
   return (
     <Card style={styles.card}>
       <View style={styles.leftBlock}>

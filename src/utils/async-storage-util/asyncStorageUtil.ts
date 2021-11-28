@@ -1,6 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-interface IGetItemOptions {
+interface GetItemOptions {
   item: string;
   onSuccess: (itemData: string | null) => void;
 }
@@ -10,7 +10,7 @@ class AsyncStorageUtil {
     AsyncStorage.setItem(item, value);
   };
 
-  static getItem = async ({ item, onSuccess }: IGetItemOptions): Promise<void> => {
+  static getItem = async ({ item, onSuccess }: GetItemOptions): Promise<void> => {
     try {
       const itemData = await AsyncStorage.getItem(item);
       onSuccess(itemData);

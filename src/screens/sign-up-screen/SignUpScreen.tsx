@@ -5,9 +5,9 @@ import { View, Text, StyleSheet } from 'react-native';
 import { sizes, themeProvider } from '../../theme';
 import { ButtonWithText, Input } from '../../uikit';
 
-interface ISignUpScreen extends StackScreenProps<any> {}
+interface SignUpScreen extends StackScreenProps<any> {}
 
-const SignUpScreen: FC<ISignUpScreen> = ({ navigation }) => {
+const SignUpScreen: FC<SignUpScreen> = ({ navigation }) => {
   const onSignUpPress = () => {};
 
   const onBackPress = () => {

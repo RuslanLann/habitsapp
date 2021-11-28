@@ -3,17 +3,17 @@ import React, { useEffect, useState } from 'react';
 import RadarChart from './RadarChart';
 import { themeProvider } from '../../theme';
 import { REST } from '../../rest';
-import { IChartData, IChartMaxima, IProcessedData } from './utils/types';
+import { ChartData, ChartMaxima, ProcessedData } from './utils/types';
 import { getMaxima, processData } from './utils/selectors';
 
 const { colors } = themeProvider;
 
 const RadarChartContainer = () => {
-  const [chartData, setChartData] = useState<IProcessedData[][]>([]);
-  const [chartMaxima, setChartMaxima] = useState<IChartMaxima | null>(null);
+  const [chartData, setChartData] = useState<ProcessedData[][]>([]);
+  const [chartMaxima, setChartMaxima] = useState<ChartMaxima | null>(null);
 
   useEffect(() => {
-    REST.getData().then((d: IChartData[]) => {
+    REST.getData().then((d: ChartData[]) => {
       setChartData(processData(d));
       setChartMaxima(getMaxima(d));
     });

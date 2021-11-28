@@ -3,7 +3,7 @@ import { Text, StyleSheet, TouchableOpacity, ViewStyle, View } from 'react-nativ
 
 import { sizes, themeProvider } from '../../theme';
 
-interface IButtonWithText {
+interface ButtonWithText {
   title: string;
   isLoading: boolean;
   onPress: () => void;
@@ -11,7 +11,7 @@ interface IButtonWithText {
   style?: ViewStyle | ViewStyle[];
 }
 
-const ButtonWithText: FC<IButtonWithText> = ({ style, title, isLoading, type = 'filled', onPress }) => {
+const ButtonWithText: FC<ButtonWithText> = ({ style, title, isLoading, type = 'filled', onPress }) => {
   return (
     <TouchableOpacity
       style={[

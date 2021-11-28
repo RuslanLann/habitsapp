@@ -3,12 +3,12 @@ import { View, StyleSheet, ViewStyle } from 'react-native';
 
 import { sizes, themeProvider } from '../../theme';
 
-interface ICard {
+interface Card {
   children: ReactChild | ReactChild[];
   style?: ViewStyle | ViewStyle[];
 }
 
-class Card extends Component<ICard> {
+class Card extends Component<Card> {
   render() {
     const { style, children } = this.props;
 

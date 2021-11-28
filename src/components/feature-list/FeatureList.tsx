@@ -4,25 +4,25 @@ import Animated from 'react-native-reanimated';
 
 import { REST } from '../../rest';
 import { sizes } from '../../theme';
-import { IChartData } from '../radar-chart/utils/types';
+import { ChartData } from '../radar-chart/utils/types';
 import FeatureListHeader from '../feature-list-header/FeatureListHeader';
 import FeatureListItem from '../feature-list-item/FeatureListItem';
 
 const RADAR_CARD_HEIGHT = sizes.screenHeight / 2.5;
 
-interface IFeatureList {
+interface FeatureList {
   onScroll:
     | ((event: NativeSyntheticEvent<NativeScrollEvent>) => void)
     | Animated.Node<((event: NativeSyntheticEvent<NativeScrollEvent>) => void) | undefined>
     | undefined;
 }
 
-const FeatureList: FC<IFeatureList> = ({ onScroll }): ReactElement => {
-  const [chartData, setChartData] = useState<IChartData[]>([]);
+const FeatureList: FC<FeatureList> = ({ onScroll }): ReactElement => {
+  const [chartData, setChartData] = useState<ChartData[]>([]);
   const AnimatedSectionList = Animated.createAnimatedComponent(SectionList);
 
   useEffect(() => {
-    REST.getData().then((d: IChartData[]) => {
+    REST.getData().then((d: ChartData[]) => {
       setChartData(d);
     });
   }, []);
@@ -48,7 +48,7 @@ const FeatureList: FC<IFeatureList> = ({ onScroll }): ReactElement => {
 
         return <FeatureListItem title={itemKeyValue[1]} index={index} />;
       }}
-      keyExtractor={(item: IChartData, index: number) => `${index}`}
+      keyExtractor={(item: ChartData, index: number) => `${index}`}
       showsVerticalScrollIndicator={false}
       onScroll={onScroll}
       scrollEventThrottle={16}

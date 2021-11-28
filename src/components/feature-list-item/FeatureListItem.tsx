@@ -5,11 +5,11 @@ import { themeProvider, responsivePixels } from '../../theme';
 import { Card } from '../../uikit';
 import FeatureDays from '../feature-days/FeatureDays';
 
-interface IFeatureListItem {
+interface FeatureListItem {
   title: string;
 }
 
-const FeatureListItem: FC<IFeatureListItem> = ({ title }): ReactElement => {
+const FeatureListItem: FC<FeatureListItem> = ({ title }): ReactElement => {
   return (
     <Card style={styles.card}>
       <Text style={styles.title}>{title}</Text>

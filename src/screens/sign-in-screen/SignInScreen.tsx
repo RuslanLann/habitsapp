@@ -5,9 +5,9 @@ import { StackScreenProps } from '@react-navigation/stack';
 import { responsivePixels, sizes, themeProvider } from '../../theme';
 import { ButtonWithText, Input } from '../../uikit';
 
-interface ISignInScreen extends StackScreenProps<any> {}
+interface SignInScreen extends StackScreenProps<any> {}
 
-const SignInScreen: FC<ISignInScreen> = ({ navigation }) => {
+const SignInScreen: FC<SignInScreen> = ({ navigation }) => {
   const onSignInPress = () => {};
 
   const onSignUpPress = () => {

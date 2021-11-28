@@ -1,20 +1,20 @@
 import theme from './theme';
 
-interface IState {
+interface State {
   isDarkTheme: boolean;
 }
 
-interface IStore {
-  getState: () => IState;
+interface Store {
+  getState: () => State;
 }
 
-const createStore: IStore = {
+const createStore: Store = {
   getState: () => ({
     isDarkTheme: true,
   }),
 };
 
-const provideTheme = (store: IStore) => {
+const provideTheme = (store: Store) => {
   const state = store.getState();
 
   return state.isDarkTheme ? theme.darkTheme : theme.lightTheme;
