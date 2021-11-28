@@ -1,16 +1,21 @@
-import React, { FC, ReactChild } from 'react';
+import React, { Component, ReactChild } from 'react';
 import { View, StyleSheet, ViewStyle } from 'react-native';
 
 import { sizes, themeProvider } from '../../theme';
 
-interface Card {
+interface ICard {
   children: ReactChild | ReactChild[];
   style?: ViewStyle | ViewStyle[];
 }
 
-const Card: FC<Card> = ({ style, children }) => {
-  return <View style={[styles.card, style]}>{children}</View>;
-};
+// class is for createAnimatedComponent
+class Card extends Component<ICard> {
+  render() {
+    const { style, children } = this.props;
+
+    return <View style={[styles.card, style]}>{children}</View>;
+  }
+}
 
 const styles = StyleSheet.create({
   card: {
