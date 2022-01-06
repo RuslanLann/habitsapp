@@ -3,7 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import { setHabitList, setRadarData, setRadarMaxima } from './radarActions';
 import { radarInitialState } from './radarState';
 
-const radarSlice = createSlice({
+export const radarSlice = createSlice({
   name: 'radar',
   initialState: radarInitialState,
   reducers: {
@@ -12,5 +12,3 @@ const radarSlice = createSlice({
     setHabitList,
   },
 });
-
-export default radarSlice;

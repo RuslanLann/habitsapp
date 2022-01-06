@@ -1,16 +1,24 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { SafeAreaView, StatusBar, StyleSheet, View, ViewStyle } from 'react-native';
 import Animated, { useAnimatedScrollHandler, useAnimatedStyle, useSharedValue } from 'react-native-reanimated';
-import { HabitList } from '../../components';
 
-import RadarChartContainer from '../../components/radar-chart/RadarChartContainer';
+import { HabitList } from '../../components';
+import { AddDataButton, Card } from '../../uikit';
+import { useDispatch } from 'react-redux';
+
+import RadarChart from '../../components/radar-chart/RadarChart';
+
+import { fetchHabitsAndSetChartData } from './store';
+
 import { themeProvider } from '../../theme';
 import { minPadding, screenHeight } from '../../theme/sizes';
-import { AddDataButton, Card } from '../../uikit';
 
 const RADAR_CARD_HEIGHT = screenHeight / 2.5;
 
 export const RadarScreen = () => {
+  const dispatch = useDispatch();
+  const loadHabitsData = () => dispatch(fetchHabitsAndSetChartData());
+
   const chartScale = useSharedValue(1);
   const cardHeight = useSharedValue(RADAR_CARD_HEIGHT);
   const AnimatedCard = Animated.createAnimatedComponent(Card);
@@ -48,13 +56,17 @@ export const RadarScreen = () => {
     },
   });
 
+  useEffect(() => {
+    loadHabitsData();
+  }, []);
+
   return (
     <SafeAreaView style={styles.safeAreaView}>
       <StatusBar barStyle="dark-content" />
       <View style={styles.screenContainer}>
         <AnimatedCard style={[styles.radarCard, cardAnimatedStyles]}>
           <Animated.View style={viewAnimatedStyles}>
-            <RadarChartContainer />
+            <RadarChart />
           </Animated.View>
         </AnimatedCard>
         <HabitList onScroll={scrollHandler} />

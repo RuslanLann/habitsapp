@@ -1,7 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 
-import { radarSlice } from '../screens/radar-screen/store';
-import { RadarState } from '../screens/radar-screen/store/types';
+import { radarSlice, RadarState } from '../screens/radar-screen/store';
 
 const store = configureStore({
   reducer: {
