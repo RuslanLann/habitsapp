@@ -8,7 +8,7 @@ import { largeFontSize, largeVerticalMargin, minPadding } from '../../theme/size
 
 interface SignInScreen extends StackScreenProps<any> {}
 
-const SignInScreen: FC<SignInScreen> = ({ navigation }) => {
+export const SignInScreen: FC<SignInScreen> = ({ navigation }) => {
   const onSignInPress = () => {};
 
   const onSignUpPress = () => {
@@ -55,5 +55,3 @@ const styles = StyleSheet.create({
     marginTop: largeVerticalMargin,
   },
 });
-
-export default SignInScreen;

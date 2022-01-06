@@ -6,7 +6,6 @@ import { themeProvider } from '../../theme';
 import { ChartMaxima, ProcessedData } from './utils/types';
 import { getMaxima, processData } from './utils/helpers';
 import { RootState } from '../../store/configureStore';
-import { CharacterData, fetchChartData } from '../../api/rest';
 import { radarSlice } from '../../screens/radar-screen/store';
 
 const { colors } = themeProvider;
@@ -21,12 +20,12 @@ const RadarChartContainer = () => {
   const radarMaxima = useSelector((state: RootState) => state.radar.radarMaxima);
 
   useEffect(() => {
-    fetchChartData().then((data: CharacterData[]) => {
-      const chartData = processData(data);
-      const chartMaxima = getMaxima(data);
-      setRadarData(chartData);
-      setRadarMaxima(chartMaxima);
-    });
+    // fetchChartData().then((data: CharacterData[]) => {
+    //   const chartData = processData(data);
+    //   const chartMaxima = getMaxima(data);
+    //   setRadarData(chartData);
+    //   setRadarMaxima(chartMaxima);
+    // });
   }, []);
 
   return (

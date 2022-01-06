@@ -1,22 +1,24 @@
 import React, { FC, ReactElement } from 'react';
 import { Text, StyleSheet, ViewStyle, TextStyle, View } from 'react-native';
 
-import { themeProvider, getHeightPx, minPadding, getWidthPx } from '../../theme';
+import { HabitDays } from '../habit-days/HabitDays';
 import { Card } from '../../uikit';
-import FeatureDays from '../feature-days/FeatureDays';
 
-interface FeatureListHeader {
+import { themeProvider, getHeightPx, getWidthPx } from '../../theme';
+import { minPadding } from '../../theme/sizes';
+
+interface HabitListHeaderProps {
   title: string;
 }
 
-const FeatureListHeader: FC<FeatureListHeader> = ({ title }): ReactElement => {
+export const HabitListHeader: FC<HabitListHeaderProps> = ({ title }): ReactElement => {
   return (
     <Card style={styles.card}>
       <View style={styles.leftBlock}>
         <View style={styles.leftStick} />
         <Text style={styles.title}>{title}</Text>
       </View>
-      <FeatureDays text={true} />
+      <HabitDays hasText={true} />
     </Card>
   );
 };
@@ -48,5 +50,3 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   } as TextStyle,
 });
-
-export default FeatureListHeader;

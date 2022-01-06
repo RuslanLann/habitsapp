@@ -1,4 +1,3 @@
-import { CharacterData } from '../../../api/rest';
 import { ChartMaxima, ProcessedData } from './types';
 
 // from victory native example

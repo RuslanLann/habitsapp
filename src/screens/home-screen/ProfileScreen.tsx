@@ -4,7 +4,7 @@ import { View, Text, Button } from 'react-native';
 
 import { themeProvider } from '../../theme';
 
-const ProfileScreen = () => {
+export const ProfileScreen = () => {
   const navigation = useNavigation();
 
   return (
@@ -18,5 +18,3 @@ const ProfileScreen = () => {
     </View>
   );
 };
-
-export default ProfileScreen;

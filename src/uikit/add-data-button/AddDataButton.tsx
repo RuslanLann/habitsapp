@@ -4,7 +4,7 @@ import Icon from 'react-native-vector-icons/dist/Ionicons';
 
 import { themeProvider } from '../../theme';
 import { screenWidth } from '../../theme/sizes';
-import { isIphoneXTernary } from '../../utils/helpers/commonHelpers';
+import { isIphoneX } from '../../constants';
 
 const BUTTON_SIZE = 50;
 const ICON_SIZE = 30;
@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
     height: BUTTON_SIZE,
     width: BUTTON_SIZE,
     position: 'absolute',
-    bottom: isIphoneXTernary(25, 15),
+    bottom: isIphoneX ? 30 : 15,
     left: screenWidth / 2 - BUTTON_SIZE / 2,
     ...themeProvider.boxShadow,
     shadowColor: themeProvider.colors.primary,

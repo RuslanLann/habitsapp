@@ -1,21 +1,20 @@
 import React, { FC, ReactElement } from 'react';
 import { Text, StyleSheet, ViewStyle, TextStyle } from 'react-native';
-import { CharacterData } from '../../api/rest';
+
+import { Card } from '../../uikit';
+import { HabitDays } from '../habit-days/HabitDays';
 
 import { getWidthPx, themeProvider } from '../../theme';
-import { Card } from '../../uikit';
-import FeatureDays from '../feature-days/FeatureDays';
 
-interface FeatureListItem {
+export interface HabitItemProps {
   title: string;
-  data: CharacterData[];
 }
 
-const FeatureListItem: FC<FeatureListItem> = ({ title }): ReactElement => {
+export const HabitItem: FC<HabitItemProps> = ({ title }): ReactElement => {
   return (
     <Card style={styles.card}>
       <Text style={styles.title}>{title}</Text>
-      <FeatureDays />
+      <HabitDays />
     </Card>
   );
 };
@@ -32,5 +31,3 @@ const styles = StyleSheet.create({
     color: themeProvider.colors.text,
   } as TextStyle,
 });
-
-export default FeatureListItem;

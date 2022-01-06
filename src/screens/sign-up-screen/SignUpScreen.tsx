@@ -8,7 +8,7 @@ import { ButtonWithText, Input } from '../../uikit';
 
 interface SignUpScreen extends StackScreenProps<any> {}
 
-const SignUpScreen: FC<SignUpScreen> = ({ navigation }) => {
+export const SignUpScreen: FC<SignUpScreen> = ({ navigation }) => {
   const onSignUpPress = () => {};
 
   const onBackPress = () => {
@@ -45,5 +45,3 @@ const styles = StyleSheet.create({
     marginTop: largeVerticalMargin,
   },
 });
-
-export default SignUpScreen;

@@ -1,7 +1,6 @@
 import { PayloadAction } from '@reduxjs/toolkit';
-import FeatureListItem from '../../../components/feature-list-item/FeatureListItem';
-import { ChartMaxima, ProcessedData } from '../../../components/radar-chart/utils/types';
 
+import { ChartMaxima, ProcessedData } from '../../../components/radar-chart/utils/types';
 import { RadarState } from './types';
 
 export const setRadarData = (state: RadarState, action: PayloadAction<ProcessedData[][]>) => {
@@ -22,10 +21,10 @@ export const setRadarMaxima = (state: RadarState, action: PayloadAction<ChartMax
   return newState;
 };
 
-export const setFeatureList = (state: RadarState, action: PayloadAction<FeatureListItem[]>) => {
+export const setHabitList = (state: RadarState, action: PayloadAction<HabitGroup[]>) => {
   const newState = {
     ...state,
-    featureList: action.payload,
+    habitList: action.payload,
   };
 
   return newState;

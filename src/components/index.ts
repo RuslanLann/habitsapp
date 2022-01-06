@@ -1,2 +1,2 @@
-export { default as RadarChart } from './radar-chart/RadarChartContainer';
-export { default as FeatureList } from './feature-list/FeatureList';
+export * from './radar-chart/RadarChartContainer';
+export * from './habit-list/HabitList';

@@ -1,9 +1,9 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-
-import { ProfileScreen, RadarScreen } from '../screens';
 import { View } from 'react-native';
 import { Text } from 'victory-native';
+
+import { ProfileScreen, RadarScreen } from '../screens';
 
 const Tab = createBottomTabNavigator();
 

@@ -1,1 +1,1 @@
-export { default as REST } from './rest';
+export * from './api';

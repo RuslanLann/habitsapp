@@ -7,14 +7,15 @@ import { screenWidth } from '../../theme/sizes';
 
 const CONTAINER_WIDTH = screenWidth * 0.6;
 
-interface FeatureDays {
-  text: boolean;
+interface HabitDaysProps {
+  hasText?: boolean;
 }
-interface FeatureDay {
+
+interface HabitDayProps {
   text?: string;
 }
 
-const FeatureDay: FC<FeatureDay> = ({ text }) => (
+const HabitDay: FC<HabitDayProps> = ({ text }) => (
   <View style={styles.dayContainer}>
     {text ? (
       <Text style={styles.day}>{text}</Text>
@@ -31,13 +32,13 @@ const FeatureDay: FC<FeatureDay> = ({ text }) => (
   </View>
 );
 
-const FeatureDays: FC<FeatureDays> = ({ text }): ReactElement => {
+export const HabitDays: FC<HabitDaysProps> = ({ hasText }): ReactElement => {
   return (
     <View style={styles.container}>
-      <FeatureDay text={text ? 'Th' : ''} />
-      <FeatureDay text={text ? 'We' : ''} />
-      <FeatureDay text={text ? 'Tu' : ''} />
-      <FeatureDay text={text ? 'Mo' : ''} />
+      <HabitDay text={hasText ? 'Th' : ''} />
+      <HabitDay text={hasText ? 'We' : ''} />
+      <HabitDay text={hasText ? 'Tu' : ''} />
+      <HabitDay text={hasText ? 'Mo' : ''} />
     </View>
   );
 };
@@ -73,5 +74,3 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
 });
-
-export default FeatureDays;
