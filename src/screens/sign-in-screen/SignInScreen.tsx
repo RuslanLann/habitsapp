@@ -2,8 +2,9 @@ import React, { FC } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { StackScreenProps } from '@react-navigation/stack';
 
-import { responsivePixels, sizes, themeProvider } from '../../theme';
+import { themeProvider } from '../../theme';
 import { ButtonWithText, Input } from '../../uikit';
+import { largeFontSize, largeVerticalMargin, minPadding } from '../../theme/sizes';
 
 interface SignInScreen extends StackScreenProps<any> {}
 
@@ -40,18 +41,18 @@ const SignInScreen: FC<SignInScreen> = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: sizes.padding,
+    padding: minPadding,
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: themeProvider.colors.background,
   },
   title: {
-    marginBottom: sizes.largeVerticalMargin,
-    fontSize: sizes.largeFontSize,
+    marginBottom: largeVerticalMargin,
+    fontSize: largeFontSize,
     fontWeight: '600',
   },
   buttonStyle: {
-    marginTop: sizes.largeVerticalMargin,
+    marginTop: largeVerticalMargin,
   },
 });
 

@@ -1,8 +1,8 @@
 import React, { FC, ReactElement } from 'react';
 import { Text, StyleSheet, ViewStyle, TextStyle } from 'react-native';
-import { CharacterData } from '../../rest/rest';
+import { CharacterData } from '../../api/rest';
 
-import { themeProvider, responsivePixels } from '../../theme';
+import { getWidthPx, themeProvider } from '../../theme';
 import { Card } from '../../uikit';
 import FeatureDays from '../feature-days/FeatureDays';
 
@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   } as ViewStyle,
   title: {
-    fontSize: responsivePixels.getWidthPx(16),
+    fontSize: getWidthPx(16),
     color: themeProvider.colors.text,
   } as TextStyle,
 });

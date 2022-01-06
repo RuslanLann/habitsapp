@@ -1,7 +1,7 @@
 import React, { FC, ReactElement } from 'react';
 import { Text, StyleSheet, ViewStyle, TextStyle, View } from 'react-native';
 
-import { themeProvider, responsivePixels, sizes } from '../../theme';
+import { themeProvider, getHeightPx, minPadding, getWidthPx } from '../../theme';
 import { Card } from '../../uikit';
 import FeatureDays from '../feature-days/FeatureDays';
 
@@ -23,9 +23,9 @@ const FeatureListHeader: FC<FeatureListHeader> = ({ title }): ReactElement => {
 
 const styles = StyleSheet.create({
   card: {
-    maxHeight: responsivePixels.getHeightPx(30),
+    maxHeight: getHeightPx(30),
     padding: 5,
-    paddingLeft: sizes.padding,
+    paddingLeft: minPadding,
     marginTop: 10,
     marginBottom: 5,
     justifyContent: 'space-between',
@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
     backgroundColor: themeProvider.colors.primary,
   } as ViewStyle,
   title: {
-    fontSize: responsivePixels.getWidthPx(16),
+    fontSize: getWidthPx(16),
     color: themeProvider.colors.text,
     fontWeight: 'bold',
   } as TextStyle,

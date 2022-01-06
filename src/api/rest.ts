@@ -1,5 +1,4 @@
 import FeatureListItem from '../components/feature-list-item/FeatureListItem';
-import { ChartData } from '../components/radar-chart/utils/types';
 
 export interface CharacterData {
   strength: number;
@@ -15,7 +14,7 @@ const characterData: CharacterData[] = [
   { strength: 5, intelligence: 225, luck: 3, stealth: 60, charisma: 120 },
 ];
 
-const fetchFeatureListData = [
+const fetchFeatureListData1 = [
   { title: 'Intelligence', data: characterData },
   { title: 'Strength', data: characterData },
   { title: 'Charisma', data: characterData },
@@ -23,17 +22,16 @@ const fetchFeatureListData = [
   { title: 'Luck', data: characterData },
 ];
 
-export default {
-  fetchChartData: (): Promise<CharacterData[]> =>
-    new Promise((resolve) => {
-      setTimeout(() => {
-        resolve(characterData);
-      }, 100);
-    }),
-  fetchFeatureListData: (): Promise<FeatureListItem[]> =>
-    new Promise((resolve) => {
-      setTimeout(() => {
-        resolve(fetchFeatureListData);
-      }, 1000);
-    }),
-};
+export const fetchChartData = (): Promise<CharacterData[]> =>
+  new Promise((resolve) => {
+    setTimeout(() => {
+      resolve(characterData);
+    }, 100);
+  });
+
+export const fetchFeatureListData = (): Promise<FeatureListItem[]> =>
+  new Promise((resolve) => {
+    setTimeout(() => {
+      resolve(fetchFeatureListData1);
+    }, 1000);
+  });

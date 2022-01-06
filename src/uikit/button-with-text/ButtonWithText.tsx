@@ -1,7 +1,8 @@
 import React, { FC } from 'react';
-import { Text, StyleSheet, TouchableOpacity, ViewStyle, View } from 'react-native';
+import { Text, StyleSheet, TouchableOpacity, ViewStyle } from 'react-native';
 
-import { sizes, themeProvider } from '../../theme';
+import { themeProvider } from '../../theme';
+import { borderRadius, buttonHeight, buttonMarginBottom, mediumBigFontSize } from '../../theme/sizes';
 
 interface ButtonWithText {
   title: string;
@@ -19,7 +20,7 @@ const ButtonWithText: FC<ButtonWithText> = ({ style, title, isLoading, type = 'f
         type === 'filled' && styles.buttonTypeFilled,
         isLoading && styles.buttonLoadingStyles,
         style,
-      ]} // вопрос: стоит ли так компановать стили или лучше исполозовать styleSheetFlatten?
+      ]}
       onPress={onPress}
       disabled={isLoading}
     >
@@ -32,19 +33,19 @@ const styles = StyleSheet.create({
   button: {
     justifyContent: 'center',
     alignItems: 'center',
-    borderRadius: sizes.borderRadius,
+    borderRadius: borderRadius,
   },
   buttonTypeFilled: {
     width: '100%',
-    height: sizes.buttonHeight,
-    marginBottom: sizes.buttonMarginBottom,
+    height: buttonHeight,
+    marginBottom: buttonMarginBottom,
     backgroundColor: themeProvider.colors.primary,
   },
   buttonLoadingStyles: {
     opacity: 0.5,
   },
   text: {
-    fontSize: sizes.mediumBigFontSize,
+    fontSize: mediumBigFontSize,
     color: themeProvider.colors.primary,
   },
   textFilledType: {

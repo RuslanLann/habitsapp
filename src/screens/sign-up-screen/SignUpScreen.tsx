@@ -2,7 +2,8 @@ import { StackScreenProps } from '@react-navigation/stack';
 import React, { FC } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
-import { sizes, themeProvider } from '../../theme';
+import { themeProvider } from '../../theme';
+import { largeFontSize, largeVerticalMargin, minPadding } from '../../theme/sizes';
 import { ButtonWithText, Input } from '../../uikit';
 
 interface SignUpScreen extends StackScreenProps<any> {}
@@ -29,19 +30,19 @@ const SignUpScreen: FC<SignUpScreen> = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: sizes.padding,
+    padding: minPadding,
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: themeProvider.colors.background,
   },
   title: {
-    marginBottom: sizes.largeVerticalMargin,
-    fontSize: sizes.largeFontSize,
+    marginBottom: largeVerticalMargin,
+    fontSize: largeFontSize,
     fontWeight: '600',
     textAlign: 'center',
   },
   buttonStyle: {
-    marginTop: sizes.largeVerticalMargin,
+    marginTop: largeVerticalMargin,
   },
 });
 

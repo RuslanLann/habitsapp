@@ -1,7 +1,8 @@
 import React, { Component, ReactChild } from 'react';
 import { View, StyleSheet, ViewStyle } from 'react-native';
 
-import { sizes, themeProvider } from '../../theme';
+import { themeProvider } from '../../theme';
+import { borderRadius, minPadding } from '../../theme/sizes';
 
 interface ICard {
   children: ReactChild | ReactChild[];
@@ -20,12 +21,12 @@ class Card extends Component<ICard> {
 const styles = StyleSheet.create({
   card: {
     width: '100%',
-    padding: sizes.padding,
+    padding: minPadding,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: themeProvider.colors.card,
-    borderRadius: sizes.borderRadius,
+    borderRadius: borderRadius,
     ...themeProvider.boxShadow,
   } as ViewStyle,
 });

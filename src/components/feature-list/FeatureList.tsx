@@ -1,16 +1,16 @@
-import React, { FC, ReactElement, useEffect } from 'react';
+import React, { FC, ReactElement, useCallback, useEffect } from 'react';
 import { StyleSheet, SectionList, NativeSyntheticEvent, NativeScrollEvent } from 'react-native';
 import Animated from 'react-native-reanimated';
 
-import { REST } from '../../rest';
-import { sizes } from '../../theme';
 import FeatureListHeader from '../feature-list-header/FeatureListHeader';
 import FeatureListItem from '../feature-list-item/FeatureListItem';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../store/configureStore';
 import { radarSlice } from '../../screens/radar-screen/store';
+import { screenHeight } from '../../theme/sizes';
+import { fetchFeatureListData } from '../../api/rest';
 
-const RADAR_CARD_HEIGHT = sizes.screenHeight / 2.5;
+const RADAR_CARD_HEIGHT = screenHeight / 2.5;
 
 interface FeatureList {
   onScroll:
@@ -28,22 +28,24 @@ const FeatureList: FC<FeatureList> = ({ onScroll }): ReactElement => {
   const AnimatedSectionList = Animated.createAnimatedComponent(SectionList);
 
   useEffect(() => {
-    REST.fetchFeatureListData().then((data) => {
+    fetchFeatureListData().then((data) => {
       setFeatureList(data);
     });
   }, []);
+
+  const renderSectionHeader = useCallback(({ section: { title } }) => <FeatureListHeader title={title} />, []);
 
   return (
     <AnimatedSectionList
       contentContainerStyle={styles.contentContainerStyle}
       sections={featureList}
-      renderSectionHeader={({ section: { title } }) => <FeatureListHeader title={title} />} // вопрос: стрелочные функции в пропсах компонента
+      renderSectionHeader={renderSectionHeader}
       renderItem={({ item, index }) => {
         const itemKeyValue = Object.keys(item);
 
         return <FeatureListItem title={itemKeyValue[1]} index={index} />;
-      }} // вопрос: стрелочные функции в пропсах компонента
-      keyExtractor={(item: FeatureListItem, index: number) => `${item.title}-${index}`} // вопрос: стрелочные функции в пропсах компонента
+      }}
+      keyExtractor={(item: FeatureListItem) => `${item.title}`} // TODO: добавить id
       showsVerticalScrollIndicator={false}
       onScroll={onScroll}
       scrollEventThrottle={16}

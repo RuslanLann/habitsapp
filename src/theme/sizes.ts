@@ -1,44 +1,24 @@
 import { Dimensions } from 'react-native';
 
-import responsivePixels from './responsivePixels';
+import { getHeightPx, getWidthPx } from './responsivePixels';
 
-const { getHeightPx } = responsivePixels;
+export const screenWidth = Dimensions.get('window').width;
+export const screenHeight = Dimensions.get('window').height;
+export const minPadding = getHeightPx(5);
+export const borderRadius = 8;
 
-const screenWidth = Dimensions.get('window').width;
-const screenHeight = Dimensions.get('window').height;
-const padding = getHeightPx(5);
-const borderRadius = 8;
+export const buttonHeight = getHeightPx(40);
+export const buttonMarginBottom = getHeightPx(15);
 
-const buttonHeight = responsivePixels.getHeightPx(40);
-const buttonMarginBottom = responsivePixels.getHeightPx(15);
+export const smallFontSize = getWidthPx(12);
+export const mediumFontSize = getWidthPx(16);
 
-const smallFontSize = responsivePixels.getWidthPx(12);
-const mediumFontSize = responsivePixels.getWidthPx(16);
-const mediumBigFontSize = responsivePixels.getWidthPx(18);
-const bigFontSize = responsivePixels.getWidthPx(20);
-const largeFontSize = responsivePixels.getWidthPx(24);
+export const mediumBigFontSize = getWidthPx(18);
+export const bigFontSize = getWidthPx(20);
+export const largeFontSize = getWidthPx(24);
 
-const smallVerticalMargin = responsivePixels.getWidthPx(5);
-const mediumVerticalMargin = responsivePixels.getWidthPx(10);
-const mediumBigVerticalMargin = responsivePixels.getWidthPx(15);
-const bigVerticalMargin = responsivePixels.getWidthPx(20);
-const largeVerticalMargin = responsivePixels.getWidthPx(30);
-
-export default {
-  screenWidth,
-  screenHeight,
-  padding,
-  borderRadius,
-  buttonHeight,
-  buttonMarginBottom,
-  smallFontSize,
-  mediumFontSize,
-  mediumBigFontSize,
-  bigFontSize,
-  largeFontSize,
-  smallVerticalMargin,
-  mediumVerticalMargin,
-  mediumBigVerticalMargin,
-  bigVerticalMargin,
-  largeVerticalMargin,
-};
+export const smallVerticalMargin = getWidthPx(5);
+export const mediumVerticalMargin = getWidthPx(10);
+export const mediumBigVerticalMargin = getWidthPx(15);
+export const bigVerticalMargin = getWidthPx(20);
+export const largeVerticalMargin = getWidthPx(30);

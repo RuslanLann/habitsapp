@@ -1,4 +1,4 @@
-const lightTheme = {
+export const lightTheme = {
   dark: false,
   colors: {
     primary: '#3E6BD6',
@@ -22,7 +22,7 @@ const lightTheme = {
   },
 };
 
-const darkTheme = {
+export const darkTheme = {
   dark: true,
   colors: {
     primary: '#3E6BD6',
@@ -44,9 +44,4 @@ const darkTheme = {
     shadowRadius: 2.22,
     elevation: 3,
   },
-};
-
-export default {
-  lightTheme,
-  darkTheme,
 };

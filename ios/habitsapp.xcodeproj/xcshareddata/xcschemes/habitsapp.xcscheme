@@ -17,7 +17,7 @@
                BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
                BuildableName = "Habitsapp.app"
                BlueprintName = "Habitsapp"
-               ReferencedContainer = "container:Habitsapp.xcodeproj">
+               ReferencedContainer = "container:habitsapp.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -35,7 +35,7 @@
                BlueprintIdentifier = "00E356ED1AD99517003FC87E"
                BuildableName = "HabitsappTests.xctest"
                BlueprintName = "HabitsappTests"
-               ReferencedContainer = "container:Habitsapp.xcodeproj">
+               ReferencedContainer = "container:habitsapp.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -57,12 +57,12 @@
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
             BuildableName = "Habitsapp.app"
             BlueprintName = "Habitsapp"
-            ReferencedContainer = "container:Habitsapp.xcodeproj">
+            ReferencedContainer = "container:habitsapp.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
    <ProfileAction
-      buildConfiguration = "Release"
+      buildConfiguration = "Debug"
       shouldUseLaunchSchemeArgsEnv = "YES"
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
@@ -74,7 +74,7 @@
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
             BuildableName = "Habitsapp.app"
             BlueprintName = "Habitsapp"
-            ReferencedContainer = "container:Habitsapp.xcodeproj">
+            ReferencedContainer = "container:habitsapp.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

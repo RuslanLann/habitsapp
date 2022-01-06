@@ -1,5 +1,1 @@
-const USER_TOKEN = 'userToken';
-
-export default {
-  USER_TOKEN,
-};
+export const USER_TOKEN = 'userToken';

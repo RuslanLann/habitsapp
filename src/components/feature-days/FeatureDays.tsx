@@ -2,9 +2,10 @@ import React, { FC, ReactElement } from 'react';
 import { View, StyleSheet, TouchableOpacity, ViewStyle, Text } from 'react-native';
 import Icon from 'react-native-vector-icons/dist/Ionicons';
 
-import { responsivePixels, sizes, themeProvider } from '../../theme';
+import { getWidthPx, themeProvider } from '../../theme';
+import { screenWidth } from '../../theme/sizes';
 
-const CONTAINER_WIDTH = sizes.screenWidth * 0.6;
+const CONTAINER_WIDTH = screenWidth * 0.6;
 
 interface FeatureDays {
   text: boolean;
@@ -22,7 +23,7 @@ const FeatureDay: FC<FeatureDay> = ({ text }) => (
         <Icon
           style={styles.icon}
           name={Math.random() * 100 > 50 ? 'checkmark-outline' : 'close-outline'}
-          size={responsivePixels.getWidthPx(22)}
+          size={getWidthPx(22)}
           color={themeProvider.colors.primary}
         />
       </TouchableOpacity>

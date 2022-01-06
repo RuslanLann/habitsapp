@@ -4,14 +4,14 @@ import { NavigationContainer } from '@react-navigation/native';
 import { AppearanceProvider, useColorScheme } from 'react-native-appearance';
 import { Provider } from 'react-redux';
 
-import { theme } from './theme';
 import { AuthNavigator, TabNavigator } from './navigation';
 import { useAuthentication } from './hooks';
 import { store } from './store';
+import { darkTheme, lightTheme } from './theme';
 
 const App = () => {
   const scheme = useColorScheme();
-  const themeType = scheme === 'dark' ? theme.darkTheme : theme.lightTheme;
+  const themeType = scheme === 'dark' ? darkTheme : lightTheme;
   const { authToken } = useAuthentication();
 
   return (

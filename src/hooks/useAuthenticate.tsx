@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { asyncStorageKeys } from '../constants';
+import { USER_TOKEN } from '../constants';
 
 import { AsyncStorageUtil } from '../utils';
 
@@ -11,7 +11,7 @@ const useAuthentication = () => {
 
   useEffect(() => {
     AsyncStorageUtil.getItem({
-      item: asyncStorageKeys.USER_TOKEN,
+      item: USER_TOKEN,
       onSuccess: (itemData: itemDataType) => {
         // setAuthToken(itemData);
         setAuthToken('token');

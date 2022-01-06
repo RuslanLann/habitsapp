@@ -1,4 +1,4 @@
-import theme from './theme';
+import { darkTheme, lightTheme } from './theme';
 
 interface State {
   isDarkTheme: boolean;
@@ -18,9 +18,7 @@ const createStore: Store = {
 const provideTheme = (store: Store) => {
   const state = store.getState();
 
-  return state.isDarkTheme ? theme.darkTheme : theme.lightTheme;
+  return state.isDarkTheme ? darkTheme : lightTheme;
 };
 
-const themeProvider = provideTheme(createStore);
-
-export default themeProvider;
+export const themeProvider = provideTheme(createStore);

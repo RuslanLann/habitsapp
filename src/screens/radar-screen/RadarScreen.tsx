@@ -3,10 +3,11 @@ import { SafeAreaView, StatusBar, StyleSheet, View, ViewStyle } from 'react-nati
 import Animated, { useAnimatedScrollHandler, useAnimatedStyle, useSharedValue } from 'react-native-reanimated';
 
 import { FeatureList, RadarChart } from '../../components';
-import { sizes, themeProvider } from '../../theme';
+import { themeProvider } from '../../theme';
+import { minPadding, screenHeight } from '../../theme/sizes';
 import { AddDataButton, Card } from '../../uikit';
 
-const RADAR_CARD_HEIGHT = sizes.screenHeight / 2.5;
+const RADAR_CARD_HEIGHT = screenHeight / 2.5;
 
 const RadarScreen = () => {
   const chartScale = useSharedValue(1);
@@ -69,12 +70,12 @@ const styles = StyleSheet.create({
   },
   screenContainer: {
     flexGrow: 1,
-    paddingHorizontal: sizes.padding,
+    paddingHorizontal: minPadding,
   },
   radarCard: {
     position: 'absolute',
     top: 0,
-    left: sizes.padding,
+    left: minPadding,
     zIndex: 99,
   },
 });
