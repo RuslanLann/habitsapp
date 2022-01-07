@@ -1,6 +1,7 @@
 import React, { FC, ReactElement } from 'react';
 import { StyleSheet, TouchableOpacity, View, ViewStyle } from 'react-native';
 import Icon from 'react-native-vector-icons/dist/Ionicons';
+import { isIphoneX } from '../../constants';
 
 import { themeProvider } from '../../theme';
 import { screenWidth } from '../../theme/sizes';
@@ -25,7 +26,7 @@ const styles = StyleSheet.create({
     height: BUTTON_SIZE,
     width: BUTTON_SIZE,
     position: 'absolute',
-    bottom: 15,
+    bottom: isIphoneX ? 30 : 15,
     left: screenWidth / 2 - BUTTON_SIZE / 2,
     ...themeProvider.boxShadow,
     shadowColor: themeProvider.colors.primary,

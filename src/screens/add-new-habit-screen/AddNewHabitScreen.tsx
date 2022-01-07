@@ -1,5 +1,6 @@
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import React, { FC, useCallback, useEffect, useState } from 'react';
 import { ScrollView, StyleSheet } from 'react-native';
+import { StackScreenProps } from '@react-navigation/stack';
 import { Text, ActionSheet, TextField, Picker, Dialog, Button } from 'react-native-ui-lib';
 import { useDispatch, useSelector } from 'react-redux';
 import colorAlpha from 'color-alpha';
@@ -12,6 +13,7 @@ import { NEW_GROUP, NEW_HABIT, useScreenType } from './hooks';
 import { RootState } from '../../store/configureStore';
 import { radarSlice } from '../radar-screen/store';
 import { borderRadius } from '../../theme/sizes';
+import { RADAR_SCREEN } from '../../constants/screenNames';
 
 const { colors } = themeProvider;
 
@@ -34,7 +36,9 @@ const renderDialog = (modalProps) => {
   );
 };
 
-export const AddNewHabitScreen = () => {
+interface AddNewHabitScreenProps extends StackScreenProps<any> {}
+
+export const AddNewHabitScreen: FC<AddNewHabitScreenProps> = ({ navigation }) => {
   const [isActionSheetVisible, showActionSheet, hideActionSheet] = useToggle();
   const { screenTitle, screenType, setScreenTypeHabit, setScreenTypeGroup } = useScreenType();
 
@@ -44,8 +48,10 @@ export const AddNewHabitScreen = () => {
   const habitList = useSelector((state: RootState) => state.radar.habitList);
 
   const dispatch = useDispatch();
-  const addNewHabitToGroup = () =>
+  const addNewHabitToGroup = () => {
     dispatch(radarSlice.actions.addNewHabitToGroup({ newHabitTitle: habitName, groupName: habitGroupName }));
+    navigation.navigate(RADAR_SCREEN);
+  };
 
   const onPickerChange = useCallback(
     (data) => {

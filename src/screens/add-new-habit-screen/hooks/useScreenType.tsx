@@ -1,5 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
-import { View, Text } from 'react-native';
+import { useCallback, useEffect, useState } from 'react';
 
 export const NEW_HABIT = 'newHabit';
 export const NEW_GROUP = 'newGroup';

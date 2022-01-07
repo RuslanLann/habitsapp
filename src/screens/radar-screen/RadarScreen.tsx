@@ -67,15 +67,17 @@ export const RadarScreen: FC<RadarScreenProps> = ({ navigation }) => {
   }, []);
 
   return (
-    <ScreenWrapper>
-      <AnimatedCard style={[styles.radarCard, cardAnimatedStyles]}>
-        <Animated.View style={viewAnimatedStyles}>
-          <RadarChart />
-        </Animated.View>
-      </AnimatedCard>
-      <HabitList onScroll={scrollHandler} />
+    <>
+      <ScreenWrapper>
+        <AnimatedCard style={[styles.radarCard, cardAnimatedStyles]}>
+          <Animated.View style={viewAnimatedStyles}>
+            <RadarChart />
+          </Animated.View>
+        </AnimatedCard>
+        <HabitList onScroll={scrollHandler} />
+      </ScreenWrapper>
       <AddDataButton onPress={onAddDataPress} />
-    </ScreenWrapper>
+    </>
   );
 };
 
