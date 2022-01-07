@@ -1,7 +1,8 @@
 import React, { useEffect, useMemo } from 'react';
-import { ScrollView, StyleSheet } from 'react-native';
-import { Text, ActionSheet, TextField, Picker } from 'react-native-ui-lib';
+import { ScrollView, StyleSheet, View } from 'react-native';
+import { Text, ActionSheet, TextField, Picker, Dialog } from 'react-native-ui-lib';
 import { useSelector } from 'react-redux';
+import colorAlpha from 'color-alpha';
 
 import { ButtonWithText, ScreenWrapper } from '../../uikit';
 
@@ -11,6 +12,24 @@ import { NEW_GROUP, NEW_HABIT, useScreenType } from './utils';
 import { RootState } from '../../store/configureStore';
 
 const { colors } = themeProvider;
+
+const renderDialog = (modalProps) => {
+  const { visible, children, toggleModal, onDone } = modalProps;
+
+  return (
+    <Dialog
+      containerStyle={{ paddingBottom: 15, paddingTop: 30, backgroundColor: colors.background }}
+      visible={visible}
+      onDismiss={toggleModal}
+      width="100%"
+      height="45%"
+      bottom
+      overlayBackgroundColor={colorAlpha(colors.primary, 0.2)}
+    >
+      <ScrollView>{children}</ScrollView>
+    </Dialog>
+  );
+};
 
 export const AddNewHabitScreen = () => {
   const habitList = useSelector((state: RootState) => state.radar.habitList);
@@ -63,10 +82,16 @@ export const AddNewHabitScreen = () => {
               topBarProps={{ title: 'Habit Groups' }}
               searchStyle={{ color: colors.notification, placeholderTextColor: colors.border }}
               underlineColor={colors.border}
-              useNativePicker
+              renderCustomModal={renderDialog}
             >
               {habitList.map((habitGroup) => (
-                <Picker.Item key={habitGroup.id} value={habitGroup.id} label={habitGroup.groupName} />
+                <Picker.Item
+                  key={habitGroup.id}
+                  value={habitGroup.id}
+                  label={habitGroup.groupName}
+                  // @ts-ignore
+                  labelStyle={styles.pickerItemLabelStyle}
+                />
               ))}
             </Picker>
           </>
@@ -120,6 +145,9 @@ export const AddNewHabitScreen = () => {
 
 const styles = StyleSheet.create({
   textField: {
+    color: colors.text,
+  },
+  pickerItemLabelStyle: {
     color: colors.text,
   },
 });
