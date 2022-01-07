@@ -29,3 +29,25 @@ export const setHabitList = (state: RadarState, action: PayloadAction<HabitGroup
 
   return newState;
 };
+
+export const addNewHabitToGroup = (
+  state: RadarState,
+  action: PayloadAction<{ groupName: string; newHabitTitle: string }>,
+) => {
+  const { groupName, newHabitTitle } = action.payload;
+
+  const habitList = state.habitList.map((habitGroup) => {
+    if (habitGroup.groupName === groupName) {
+      habitGroup.data = [...habitGroup.data, { id: Date.now(), title: newHabitTitle, score: 0, daysCompleted: [] }];
+    }
+
+    return habitGroup;
+  });
+
+  const newState = {
+    ...state,
+    habitList,
+  };
+
+  return newState;
+};

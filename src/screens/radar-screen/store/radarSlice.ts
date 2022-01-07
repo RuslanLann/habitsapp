@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { setHabitList, setRadarData, setRadarMaxima } from './radarActions';
+import { addNewHabitToGroup, setHabitList, setRadarData, setRadarMaxima } from './radarActions';
 import { radarInitialState } from './radarState';
 
 export const radarSlice = createSlice({
@@ -10,5 +10,6 @@ export const radarSlice = createSlice({
     setRadarData,
     setRadarMaxima,
     setHabitList,
+    addNewHabitToGroup,
   },
 });

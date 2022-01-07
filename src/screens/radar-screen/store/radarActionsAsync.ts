@@ -1,4 +1,6 @@
-import { radarSlice } from './radarReducer';
+import { Dispatch } from 'redux';
+
+import { radarSlice } from './radarSlice';
 import { fetchHabits } from '../../../api';
 import { getMaxima, processData } from '../../../components/radar-chart/utils';
 
@@ -9,7 +11,7 @@ const oldData = [
   { strength: 5, intelligence: 225, luck: 3, stealth: 60, charisma: 120 },
 ];
 
-export const fetchHabitsAndSetChartData = () => async (dispatch) => {
+export const fetchHabitsAndSetChartData = () => async (dispatch: Dispatch) => {
   try {
     const habits = await fetchHabits();
 

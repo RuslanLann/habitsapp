@@ -1,7 +1,7 @@
-import React, { useEffect, useMemo } from 'react';
-import { ScrollView, StyleSheet, View } from 'react-native';
-import { Text, ActionSheet, TextField, Picker, Dialog } from 'react-native-ui-lib';
-import { useSelector } from 'react-redux';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import { ScrollView, StyleSheet } from 'react-native';
+import { Text, ActionSheet, TextField, Picker, Dialog, Button } from 'react-native-ui-lib';
+import { useDispatch, useSelector } from 'react-redux';
 import colorAlpha from 'color-alpha';
 
 import { ButtonWithText, ScreenWrapper } from '../../uikit';
@@ -10,6 +10,8 @@ import { themeProvider } from '../../theme';
 import { useToggle } from '../../hooks';
 import { NEW_GROUP, NEW_HABIT, useScreenType } from './utils';
 import { RootState } from '../../store/configureStore';
+import { radarSlice } from '../radar-screen/store';
+import { borderRadius } from '../../theme/sizes';
 
 const { colors } = themeProvider;
 
@@ -32,10 +34,17 @@ const renderDialog = (modalProps) => {
 };
 
 export const AddNewHabitScreen = () => {
-  const habitList = useSelector((state: RootState) => state.radar.habitList);
-
   const [isActionSheetVisible, showActionSheet, hideActionSheet] = useToggle();
   const { screenTitle, screenType, setScreenTypeHabit, setScreenTypeGroup } = useScreenType();
+
+  const [habitName, setHabitName] = useState('');
+  const [habitGroupName, setHabitGroupName] = useState('');
+
+  const habitList = useSelector((state: RootState) => state.radar.habitList);
+
+  const dispatch = useDispatch();
+  const addNewHabitToGroup = () =>
+    dispatch(radarSlice.actions.addNewHabitToGroup({ newHabitTitle: habitName, groupName: habitGroupName }));
 
   const actionSheetOptions = useMemo(
     () => [
@@ -46,14 +55,22 @@ export const AddNewHabitScreen = () => {
     [setScreenTypeHabit, setScreenTypeGroup, hideActionSheet],
   );
 
-  // useEffect(() => {
-  //   !isActionSheetVisible && showActionSheet();
-  // }, []);
+  const onPickerChange = useCallback(
+    (data) => {
+      console.log(data.value, 'v <<<<<<<<<<<');
+      setHabitGroupName(data.value);
+    },
+    [setHabitGroupName],
+  );
+
+  useEffect(() => {
+    !isActionSheetVisible && showActionSheet();
+  }, []);
 
   return (
     <ScreenWrapper>
       <ScrollView keyboardDismissMode="interactive">
-        <Text color={colors.text} text50L center>
+        <Text color={colors.text} text50L center marginB-30>
           {screenTitle}
         </Text>
         {screenType === NEW_HABIT && (
@@ -61,36 +78,32 @@ export const AddNewHabitScreen = () => {
             <TextField
               style={styles.textField}
               placeholder="Enter Habit Title"
-              floatingPlaceholder
-              floatOnFocus
               labelColor={colors.notification}
-              floatingPlaceholderColor={{
-                focus: colors.notification,
-                default: colors.border,
-              }}
+              value={habitName}
+              onChangeText={setHabitName}
               underlineColor={{
                 focus: colors.notification,
-                default: colors.border,
+                default: habitName ? colors.notification : colors.border,
               }}
               text70
               marginB-s4
             />
             <Picker
               placeholder="Select Habit Group"
-              value={''}
-              onChange={(value) => {}}
+              value={habitGroupName}
+              onChange={onPickerChange}
               topBarProps={{ title: 'Habit Groups' }}
-              searchStyle={{ color: colors.notification, placeholderTextColor: colors.border }}
-              underlineColor={colors.border}
+              underlineColor={habitGroupName ? colors.notification : colors.border}
               renderCustomModal={renderDialog}
+              style={styles.pickerLabel}
             >
               {habitList.map((habitGroup) => (
                 <Picker.Item
                   key={habitGroup.id}
-                  value={habitGroup.id}
+                  value={habitGroup.groupName}
                   label={habitGroup.groupName}
                   // @ts-ignore
-                  labelStyle={styles.pickerItemLabelStyle}
+                  labelStyle={styles.pickerLabel}
                 />
               ))}
             </Picker>
@@ -131,7 +144,16 @@ export const AddNewHabitScreen = () => {
           </>
         )}
       </ScrollView>
-      <ButtonWithText title="Save" isLoading={false} onPress={() => {}} type="filled" />
+      {/* <ButtonWithText title="Save" isLoading={false} onPress={addNewHabitToGroup} type="filled" disa /> */}
+      <Button
+        style={styles.button}
+        label="Save"
+        onPress={addNewHabitToGroup}
+        backgroundColor={colors.primary}
+        disabled={!habitName || !habitGroupName}
+        disabledBackgroundColor={colorAlpha(colors.border, 0.2)}
+        animateLayout
+      />
       <ActionSheet
         cancelButtonIndex={2}
         options={actionSheetOptions}
@@ -147,7 +169,10 @@ const styles = StyleSheet.create({
   textField: {
     color: colors.text,
   },
-  pickerItemLabelStyle: {
+  pickerLabel: {
     color: colors.text,
+  },
+  button: {
+    borderRadius,
   },
 });
