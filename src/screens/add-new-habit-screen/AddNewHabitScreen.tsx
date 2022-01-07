@@ -1,16 +1,16 @@
 import React, { useEffect } from 'react';
-import { StyleSheet } from 'react-native';
-import { Text, ActionSheet } from 'react-native-ui-lib';
+import { ScrollView, StyleSheet } from 'react-native';
+import { Text, ActionSheet, TextField } from 'react-native-ui-lib';
 
 import { ScreenWrapper } from '../../uikit';
 
 import { themeProvider } from '../../theme';
 import { useToggle } from '../../hooks';
-import { useScreenType } from './utils';
+import { NEW_GROUP, NEW_HABIT, useScreenType } from './utils';
 
 export const AddNewHabitScreen = () => {
   const [isActionSheetVisible, showActionSheet, hideActionSheet] = useToggle();
-  const { screenTitle, setScreenTypeHabit, setScreenTypeGroup } = useScreenType();
+  const { screenTitle, screenType, setScreenTypeHabit, setScreenTypeGroup } = useScreenType();
 
   useEffect(() => {
     !isActionSheetVisible && showActionSheet();
@@ -18,9 +18,63 @@ export const AddNewHabitScreen = () => {
 
   return (
     <ScreenWrapper>
-      <Text color={themeProvider.colors.text} text50L center>
-        {screenTitle}
-      </Text>
+      <ScrollView keyboardDismissMode="interactive">
+        <Text color={themeProvider.colors.text} text50L center>
+          {screenTitle}
+        </Text>
+        {screenType === NEW_HABIT && (
+          <TextField
+            placeholder="Enter Habit Title"
+            floatingPlaceholder
+            floatOnFocus
+            labelColor={themeProvider.colors.notification}
+            floatingPlaceholderColor={{
+              focus: themeProvider.colors.notification,
+              default: themeProvider.colors.border,
+            }}
+            underlineColor={{
+              focus: themeProvider.colors.notification,
+              default: themeProvider.colors.border,
+            }}
+            text70
+            marginB-s4
+          />
+        )}
+        {screenType === NEW_GROUP && (
+          <>
+            <TextField
+              placeholder="Enter Habit Group Title"
+              floatingPlaceholder
+              floatOnFocus
+              floatingPlaceholderColor={{
+                focus: themeProvider.colors.turq,
+                default: themeProvider.colors.border,
+              }}
+              underlineColor={{
+                focus: themeProvider.colors.turq,
+                default: themeProvider.colors.border,
+              }}
+              text70
+              marginB-s4
+            />
+            <TextField
+              placeholder="Enter Habit Title"
+              floatingPlaceholder
+              floatOnFocus
+              floatingPlaceholderColor={{
+                focus: themeProvider.colors.turq,
+                default: themeProvider.colors.border,
+              }}
+              underlineColor={{
+                focus: themeProvider.colors.turq,
+                default: themeProvider.colors.border,
+              }}
+              text70
+              marginB-s4
+            />
+          </>
+        )}
+      </ScrollView>
       <ActionSheet
         cancelButtonIndex={2}
         options={[
@@ -37,5 +91,8 @@ export const AddNewHabitScreen = () => {
 };
 
 const styles = StyleSheet.create({
-  title: {},
+  newHabitInput: {
+    borderColor: themeProvider.colors.notification,
+    borderBottomWidth: 1,
+  },
 });
