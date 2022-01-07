@@ -4,19 +4,20 @@ import { Text, ActionSheet, TextField, Picker, Dialog, Button } from 'react-nati
 import { useDispatch, useSelector } from 'react-redux';
 import colorAlpha from 'color-alpha';
 
-import { ButtonWithText, ScreenWrapper } from '../../uikit';
+import { ScreenWrapper } from '../../uikit';
 
 import { themeProvider } from '../../theme';
 import { useToggle } from '../../hooks';
-import { NEW_GROUP, NEW_HABIT, useScreenType } from './utils';
+import { NEW_GROUP, NEW_HABIT, useScreenType } from './hooks';
 import { RootState } from '../../store/configureStore';
 import { radarSlice } from '../radar-screen/store';
 import { borderRadius } from '../../theme/sizes';
 
 const { colors } = themeProvider;
 
+// TODO: new component
 const renderDialog = (modalProps) => {
-  const { visible, children, toggleModal, onDone } = modalProps;
+  const { visible, children, toggleModal } = modalProps;
 
   return (
     <Dialog
@@ -45,15 +46,6 @@ export const AddNewHabitScreen = () => {
   const dispatch = useDispatch();
   const addNewHabitToGroup = () =>
     dispatch(radarSlice.actions.addNewHabitToGroup({ newHabitTitle: habitName, groupName: habitGroupName }));
-
-  const actionSheetOptions = useMemo(
-    () => [
-      { label: 'Add New Habit', onPress: setScreenTypeHabit },
-      { label: 'Add New Habit Group', onPress: setScreenTypeGroup },
-      { label: 'Cancel', onPress: hideActionSheet },
-    ],
-    [setScreenTypeHabit, setScreenTypeGroup, hideActionSheet],
-  );
 
   const onPickerChange = useCallback(
     (data) => {
@@ -88,6 +80,7 @@ export const AddNewHabitScreen = () => {
               text70
               marginB-s4
             />
+            {/* // TODO: new Picker component */}
             <Picker
               placeholder="Select Habit Group"
               value={habitGroupName}
@@ -109,6 +102,7 @@ export const AddNewHabitScreen = () => {
             </Picker>
           </>
         )}
+        {/* // TODO: NewGroup component */}
         {screenType === NEW_GROUP && (
           <>
             <TextField
@@ -144,7 +138,6 @@ export const AddNewHabitScreen = () => {
           </>
         )}
       </ScrollView>
-      {/* <ButtonWithText title="Save" isLoading={false} onPress={addNewHabitToGroup} type="filled" disa /> */}
       <Button
         style={styles.button}
         label="Save"
@@ -156,7 +149,11 @@ export const AddNewHabitScreen = () => {
       />
       <ActionSheet
         cancelButtonIndex={2}
-        options={actionSheetOptions}
+        options={[
+          { label: 'Add New Habit', onPress: setScreenTypeHabit },
+          { label: 'Add New Habit Group', onPress: setScreenTypeGroup },
+          { label: 'Cancel', onPress: hideActionSheet },
+        ]}
         visible={isActionSheetVisible}
         onDismiss={hideActionSheet}
         useNativeIOS
