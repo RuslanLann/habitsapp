@@ -1,1 +1,2 @@
-export { default as useAuthentication } from './useAuthenticate';
+export * from './useAuthenticate';
+export * from './useToggle';

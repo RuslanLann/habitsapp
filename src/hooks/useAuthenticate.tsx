@@ -5,7 +5,7 @@ import { USER_TOKEN } from '../constants';
 
 type itemDataType = string | null;
 
-const useAuthentication = () => {
+export const useAuthentication = () => {
   const [authToken, setAuthToken] = useState<itemDataType>('token');
   const [isLoading, setLoading] = useState(true);
 
@@ -24,5 +24,3 @@ const useAuthentication = () => {
     isLoading,
   };
 };
-
-export default useAuthentication;

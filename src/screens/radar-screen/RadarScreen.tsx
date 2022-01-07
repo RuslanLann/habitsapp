@@ -1,11 +1,11 @@
 import React, { FC, useCallback, useEffect } from 'react';
-import { SafeAreaView, StatusBar, StyleSheet, View, ViewStyle } from 'react-native';
+import { StyleSheet, ViewStyle } from 'react-native';
 import Animated, { useAnimatedScrollHandler, useAnimatedStyle, useSharedValue } from 'react-native-reanimated';
 import { StackScreenProps } from '@react-navigation/stack';
+import { useDispatch } from 'react-redux';
 
 import { HabitList, RadarChart } from '../../components';
-import { AddDataButton, Card } from '../../uikit';
-import { useDispatch } from 'react-redux';
+import { AddDataButton, Card, ScreenWrapper } from '../../uikit';
 
 import { fetchHabitsAndSetChartData } from './store';
 
@@ -67,18 +67,15 @@ export const RadarScreen: FC<RadarScreenProps> = ({ navigation }) => {
   }, []);
 
   return (
-    <SafeAreaView style={styles.safeAreaView}>
-      <StatusBar barStyle="dark-content" />
-      <View style={styles.screenContainer}>
-        <AnimatedCard style={[styles.radarCard, cardAnimatedStyles]}>
-          <Animated.View style={viewAnimatedStyles}>
-            <RadarChart />
-          </Animated.View>
-        </AnimatedCard>
-        <HabitList onScroll={scrollHandler} />
-      </View>
+    <ScreenWrapper>
+      <AnimatedCard style={[styles.radarCard, cardAnimatedStyles]}>
+        <Animated.View style={viewAnimatedStyles}>
+          <RadarChart />
+        </Animated.View>
+      </AnimatedCard>
+      <HabitList onScroll={scrollHandler} />
       <AddDataButton onPress={onAddDataPress} />
-    </SafeAreaView>
+    </ScreenWrapper>
   );
 };
 
