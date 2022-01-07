@@ -1,4 +1,7 @@
-const habitsGroups: HabitGroup[] = [
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { DB_HABIT_GROUPS } from '../constants';
+
+const habitGroups: HabitGroup[] = [
   {
     id: 0,
     groupName: 'Mental',
@@ -34,9 +37,20 @@ const habitsGroups: HabitGroup[] = [
   },
 ];
 
+AsyncStorage.getItem(DB_HABIT_GROUPS).then((data) => {
+  if (!data) {
+    AsyncStorage.setItem(DB_HABIT_GROUPS, JSON.stringify(habitGroups));
+  }
+});
+
 export const fetchHabits = (): Promise<HabitGroup[]> =>
   new Promise((resolve) => {
     setTimeout(() => {
-      resolve(habitsGroups);
+      AsyncStorage.getItem(DB_HABIT_GROUPS).then((data) => {
+        if (data) {
+          const parsedData = JSON.parse(data);
+          resolve(parsedData);
+        }
+      });
     }, 1000);
   });

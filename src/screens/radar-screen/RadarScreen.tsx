@@ -2,11 +2,9 @@ import React, { useEffect } from 'react';
 import { SafeAreaView, StatusBar, StyleSheet, View, ViewStyle } from 'react-native';
 import Animated, { useAnimatedScrollHandler, useAnimatedStyle, useSharedValue } from 'react-native-reanimated';
 
-import { HabitList } from '../../components';
+import { HabitList, RadarChart } from '../../components';
 import { AddDataButton, Card } from '../../uikit';
 import { useDispatch } from 'react-redux';
-
-import RadarChart from '../../components/radar-chart/RadarChart';
 
 import { fetchHabitsAndSetChartData } from './store';
 

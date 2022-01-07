@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
-import { USER_TOKEN } from '../constants';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
-import { AsyncStorageUtil } from '../utils';
+import { USER_TOKEN } from '../constants';
 
 type itemDataType = string | null;
 
@@ -10,13 +10,13 @@ const useAuthentication = () => {
   const [isLoading, setLoading] = useState(true);
 
   useEffect(() => {
-    AsyncStorageUtil.getItem({
-      item: USER_TOKEN,
-      onSuccess: (itemData: itemDataType) => {
-        // setAuthToken(itemData);
+    AsyncStorage.getItem(USER_TOKEN).then((token) => {
+      console.log(token);
+      if (token) {
+        setAuthToken(token);
         setAuthToken('token');
         setLoading(false);
-      },
+      }
     });
   }, []);
 

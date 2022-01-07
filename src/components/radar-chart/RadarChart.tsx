@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, memo } from 'react';
 import { useSelector } from 'react-redux';
 import { VictoryChart, VictoryTheme, VictoryGroup, VictoryArea, VictoryPolarAxis, VictoryLabel } from 'victory-native';
 
@@ -7,7 +7,7 @@ import { themeProvider } from '../../theme';
 
 const { colors } = themeProvider;
 
-const RadarChart = () => {
+export const RadarChart = () => {
   const radarData = useSelector((state: RootState) => state.radar.radarData);
   const radarMaxima = useSelector((state: RootState) => state.radar.radarMaxima);
 
@@ -55,5 +55,3 @@ const RadarChart = () => {
     </VictoryChart>
   );
 };
-
-export default RadarChart;
