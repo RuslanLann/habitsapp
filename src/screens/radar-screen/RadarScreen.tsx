@@ -1,6 +1,7 @@
-import React, { useEffect } from 'react';
+import React, { FC, useCallback, useEffect } from 'react';
 import { SafeAreaView, StatusBar, StyleSheet, View, ViewStyle } from 'react-native';
 import Animated, { useAnimatedScrollHandler, useAnimatedStyle, useSharedValue } from 'react-native-reanimated';
+import { StackScreenProps } from '@react-navigation/stack';
 
 import { HabitList, RadarChart } from '../../components';
 import { AddDataButton, Card } from '../../uikit';
@@ -10,10 +11,13 @@ import { fetchHabitsAndSetChartData } from './store';
 
 import { themeProvider } from '../../theme';
 import { minPadding, screenHeight } from '../../theme/sizes';
+import { ADD_NEW_HABIT_SCREEN } from '../../constants/screenNames';
 
 const RADAR_CARD_HEIGHT = screenHeight / 2.5;
 
-export const RadarScreen = () => {
+interface RadarScreenProps extends StackScreenProps<any> {}
+
+export const RadarScreen: FC<RadarScreenProps> = ({ navigation }) => {
   const dispatch = useDispatch();
   const loadHabitsData = () => dispatch(fetchHabitsAndSetChartData());
 
@@ -54,6 +58,10 @@ export const RadarScreen = () => {
     },
   });
 
+  const onAddDataPress = useCallback(() => {
+    navigation.navigate(ADD_NEW_HABIT_SCREEN);
+  }, [navigation]);
+
   useEffect(() => {
     loadHabitsData();
   }, []);
@@ -69,7 +77,7 @@ export const RadarScreen = () => {
         </AnimatedCard>
         <HabitList onScroll={scrollHandler} />
       </View>
-      <AddDataButton onPress={() => (cardHeight.value = 200)} />
+      <AddDataButton onPress={onAddDataPress} />
     </SafeAreaView>
   );
 };

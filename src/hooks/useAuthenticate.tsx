@@ -11,7 +11,6 @@ const useAuthentication = () => {
 
   useEffect(() => {
     AsyncStorage.getItem(USER_TOKEN).then((token) => {
-      console.log(token);
       if (token) {
         setAuthToken(token);
         setAuthToken('token');

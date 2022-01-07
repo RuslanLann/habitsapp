@@ -6,9 +6,9 @@ import { themeProvider } from '../../theme';
 import { largeFontSize, largeVerticalMargin, minPadding } from '../../theme/sizes';
 import { ButtonWithText, Input } from '../../uikit';
 
-interface SignUpScreen extends StackScreenProps<any> {}
+interface SignUpScreenProps extends StackScreenProps<any> {}
 
-export const SignUpScreen: FC<SignUpScreen> = ({ navigation }) => {
+export const SignUpScreen: FC<SignUpScreenProps> = ({ navigation }) => {
   const onSignUpPress = () => {};
 
   const onBackPress = () => {

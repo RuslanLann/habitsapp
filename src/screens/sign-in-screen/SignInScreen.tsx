@@ -6,9 +6,9 @@ import { themeProvider } from '../../theme';
 import { ButtonWithText, Input } from '../../uikit';
 import { largeFontSize, largeVerticalMargin, minPadding } from '../../theme/sizes';
 
-interface SignInScreen extends StackScreenProps<any> {}
+interface SignInScreenProps extends StackScreenProps<any> {}
 
-export const SignInScreen: FC<SignInScreen> = ({ navigation }) => {
+export const SignInScreen: FC<SignInScreenProps> = ({ navigation }) => {
   const onSignInPress = () => {};
 
   const onSignUpPress = () => {
@@ -18,20 +18,8 @@ export const SignInScreen: FC<SignInScreen> = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Enter your email and password</Text>
-      <Input
-        placeholder="email"
-        textContentType="emailAddress"
-        keyboardType="email-address"
-        autoCapitalize="none"
-        autoCompleteType="off"
-      />
-      <Input
-        placeholder="password"
-        textContentType="password"
-        autoCapitalize="none"
-        autoCompleteType="off"
-        secureTextEntry={true}
-      />
+      <Input placeholder="email" textContentType="emailAddress" keyboardType="email-address" autoCapitalize="none" />
+      <Input placeholder="password" textContentType="password" autoCapitalize="none" secureTextEntry={true} />
       <ButtonWithText title="Sign In" isLoading={false} onPress={onSignInPress} style={styles.buttonStyle} />
       <ButtonWithText title="Sign Up" isLoading={false} onPress={onSignUpPress} type="transparent" />
     </View>
