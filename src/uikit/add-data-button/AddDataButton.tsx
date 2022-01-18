@@ -1,8 +1,8 @@
 import React, { FC, ReactElement } from 'react';
 import { StyleSheet, TouchableOpacity, View, ViewStyle } from 'react-native';
 import Icon from 'react-native-vector-icons/dist/Ionicons';
-import { isIphoneX } from '../../constants';
 
+import { isIphoneX } from '../../constants';
 import { themeProvider } from '../../theme';
 import { screenWidth } from '../../theme/sizes';
 
