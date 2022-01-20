@@ -3,12 +3,10 @@ import React from 'react';
 import { LogBox, StatusBar } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { AppearanceProvider, useColorScheme } from 'react-native-appearance';
-import { Provider } from 'react-redux';
 
 import { AuthNavigator, StackNavigator } from './navigation';
 
 import { useAuthentication } from './hooks';
-import { store } from './store';
 import { darkTheme, lightTheme } from './theme';
 
 LogBox.ignoreAllLogs();
@@ -20,7 +18,7 @@ const App = () => {
   const { authToken } = useAuthentication();
 
   return (
-    <Provider store={store}>
+    <>
       <StatusBar barStyle={isColorSchemeDark ? 'light-content' : 'dark-content'} />
       <AppearanceProvider>
         {authToken ? (
@@ -33,7 +31,7 @@ const App = () => {
           </NavigationContainer>
         )}
       </AppearanceProvider>
-    </Provider>
+    </>
   );
 };
 

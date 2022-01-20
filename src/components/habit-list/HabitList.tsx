@@ -1,14 +1,13 @@
-import React, { FC, ReactElement, useCallback } from 'react';
+import React, { FC, ReactElement, useCallback, useRef } from 'react';
+import { observer } from 'mobx-react-lite';
 import { StyleSheet, SectionList, SectionListProps, NativeSyntheticEvent, NativeScrollEvent } from 'react-native';
 import Animated from 'react-native-reanimated';
 
 import { HabitItem } from '../habit-item/HabitItem';
 import { HabitListHeader } from '../habit-list-header/HabitListHeader';
 
-import { useSelector } from 'react-redux';
-import { RootState } from '../../store/configureStore';
-
 import { screenHeight } from '../../theme/sizes';
+import { RadarChartStore } from '../../store-mobx';
 
 const RADAR_CARD_HEIGHT = screenHeight / 2.5;
 
@@ -19,33 +18,37 @@ interface HabitListProps {
     | undefined;
 }
 
-export const HabitList: FC<HabitListProps> = ({ onScroll }): ReactElement => {
-  const AnimatedSectionList = Animated.createAnimatedComponent<SectionListProps<Habit, HabitGroup>>(SectionList);
+export const HabitList: FC<HabitListProps> = observer(
+  ({ onScroll }): ReactElement => {
+    const AnimatedSectionList = Animated.createAnimatedComponent<SectionListProps<Habit, HabitGroup>>(SectionList);
 
-  const habitList = useSelector((state: RootState) => state.radar.habitList);
+    const radarStore = useRef(RadarChartStore).current;
+    console.log(radarStore, 'radarStore <<<<<<');
+    const { habitList } = radarStore;
 
-  const renderSectionHeader = useCallback(
-    ({ section: { groupName } }: { section: HabitGroup }) => <HabitListHeader title={groupName} />,
-    [],
-  );
+    const renderSectionHeader = useCallback(
+      ({ section: { groupName } }: { section: HabitGroup }) => <HabitListHeader title={groupName} />,
+      [],
+    );
 
-  const renderItem = useCallback(({ item }: { item: Habit }) => <HabitItem title={item.title} />, []);
+    const renderItem = useCallback(({ item }: { item: Habit }) => <HabitItem title={item.title} />, []);
 
-  const keyExtractor = useCallback((item: Habit) => item.id.toString(), []);
+    const keyExtractor = useCallback((item: Habit) => item.id.toString(), []);
 
-  return (
-    <AnimatedSectionList
-      contentContainerStyle={styles.contentContainerStyle}
-      sections={habitList}
-      renderSectionHeader={renderSectionHeader}
-      renderItem={renderItem}
-      keyExtractor={keyExtractor}
-      showsVerticalScrollIndicator={false}
-      onScroll={onScroll}
-      scrollEventThrottle={16}
-    />
-  );
-};
+    return (
+      <AnimatedSectionList
+        contentContainerStyle={styles.contentContainerStyle}
+        sections={habitList}
+        renderSectionHeader={renderSectionHeader}
+        renderItem={renderItem}
+        keyExtractor={keyExtractor}
+        showsVerticalScrollIndicator={false}
+        onScroll={onScroll}
+        scrollEventThrottle={16}
+      />
+    );
+  },
+);
 
 const styles = StyleSheet.create({
   contentContainerStyle: {

@@ -1,15 +1,14 @@
-import React, { FC, memo } from 'react';
-import { useSelector } from 'react-redux';
+import React, { useRef } from 'react';
+import { observer } from 'mobx-react-lite';
 import { VictoryChart, VictoryTheme, VictoryGroup, VictoryArea, VictoryPolarAxis, VictoryLabel } from 'victory-native';
+import { RadarChartStore } from '../../store-mobx';
 
-import { RootState } from '../../store/configureStore';
 import { themeProvider } from '../../theme';
 
 const { colors } = themeProvider;
 
-export const RadarChart = () => {
-  const radarData = useSelector((state: RootState) => state.radar.radarData);
-  const radarMaxima = useSelector((state: RootState) => state.radar.radarMaxima);
+export const RadarChart = observer(() => {
+  const { radarData, radarMaxima } = useRef(RadarChartStore).current;
 
   return (
     <VictoryChart polar theme={VictoryTheme.material} domain={{ y: [0, 1] }}>
@@ -54,4 +53,4 @@ export const RadarChart = () => {
       />
     </VictoryChart>
   );
-};
+});
