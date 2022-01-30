@@ -1,4 +1,4 @@
-package com.citrusfun.habitsapp;
+package com.habitsapp;
 
 import com.facebook.react.ReactActivity;
 
