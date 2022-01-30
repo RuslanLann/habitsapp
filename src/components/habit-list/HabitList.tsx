@@ -8,6 +8,7 @@ import { HabitListHeader } from '../habit-list-header/HabitListHeader';
 
 import { screenHeight } from '../../theme/sizes';
 import { RadarChartStore } from '../../store-mobx';
+import { toJS } from 'mobx';
 
 const RADAR_CARD_HEIGHT = screenHeight / 2.5;
 
@@ -18,37 +19,34 @@ interface HabitListProps {
     | undefined;
 }
 
-export const HabitList: FC<HabitListProps> = observer(
-  ({ onScroll }): ReactElement => {
-    const AnimatedSectionList = Animated.createAnimatedComponent<SectionListProps<Habit, HabitGroup>>(SectionList);
+export const HabitList: FC<HabitListProps> = observer(({ onScroll }): ReactElement => {
+  const AnimatedSectionList = Animated.createAnimatedComponent<SectionListProps<Habit, HabitGroup>>(SectionList);
 
-    const radarStore = useRef(RadarChartStore).current;
-    console.log(radarStore, 'radarStore <<<<<<');
-    const { habitList } = radarStore;
+  const radarStore = useRef(RadarChartStore).current;
+  const { habitList } = radarStore;
 
-    const renderSectionHeader = useCallback(
-      ({ section: { groupName } }: { section: HabitGroup }) => <HabitListHeader title={groupName} />,
-      [],
-    );
+  const renderSectionHeader = useCallback(
+    ({ section: { groupName } }: { section: HabitGroup }) => <HabitListHeader title={groupName} />,
+    [],
+  );
 
-    const renderItem = useCallback(({ item }: { item: Habit }) => <HabitItem title={item.title} />, []);
+  const renderItem = useCallback(({ item }: { item: Habit }) => <HabitItem title={item.title} />, []);
 
-    const keyExtractor = useCallback((item: Habit) => item.id.toString(), []);
+  const keyExtractor = useCallback((item: Habit) => item.id.toString(), []);
 
-    return (
-      <AnimatedSectionList
-        contentContainerStyle={styles.contentContainerStyle}
-        sections={habitList}
-        renderSectionHeader={renderSectionHeader}
-        renderItem={renderItem}
-        keyExtractor={keyExtractor}
-        showsVerticalScrollIndicator={false}
-        onScroll={onScroll}
-        scrollEventThrottle={16}
-      />
-    );
-  },
-);
+  return (
+    <AnimatedSectionList
+      contentContainerStyle={styles.contentContainerStyle}
+      sections={toJS(habitList)}
+      renderSectionHeader={renderSectionHeader}
+      renderItem={renderItem}
+      keyExtractor={keyExtractor}
+      showsVerticalScrollIndicator={false}
+      onScroll={onScroll}
+      scrollEventThrottle={16}
+    />
+  );
+});
 
 const styles = StyleSheet.create({
   contentContainerStyle: {

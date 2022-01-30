@@ -28,8 +28,7 @@ class RadarChart {
   addNewHabitToGroup(habitData: { groupName: string; newHabitTitle: string }) {
     const { groupName, newHabitTitle } = habitData;
 
-    console.log(this.habitList, 'this.habitList <<<<<<<');
-    this.habitList = this.habitList?.map((habitGroup) => {
+    this.habitList = this.habitList?.map(habitGroup => {
       if (habitGroup.groupName === groupName) {
         habitGroup.data = [...habitGroup.data, { id: Date.now(), title: newHabitTitle, score: 0, daysCompleted: [] }];
       }
@@ -41,8 +40,6 @@ class RadarChart {
   fetchHabitsAndSetChartData = async () => {
     try {
       const habits = await fetchHabits();
-
-      console.log(habits, 'habits <<<<<<<<<<<<<<<<<<<<<');
 
       if (habits) {
         this.setHabitList(habits);

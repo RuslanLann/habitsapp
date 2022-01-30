@@ -16,7 +16,7 @@ import { RadarChartStore } from '../../store-mobx';
 const { colors } = themeProvider;
 
 // TODO: new component
-const renderDialog = (modalProps) => {
+const renderDialog = modalProps => {
   const { visible, children, toggleModal } = modalProps;
 
   return (
@@ -51,8 +51,7 @@ export const AddNewHabitScreen: FC<AddNewHabitScreenProps> = ({ navigation }) =>
   };
 
   const onPickerChange = useCallback(
-    (data) => {
-      console.log(data.value, 'v <<<<<<<<<<<');
+    data => {
       setHabitGroupName(data.value);
     },
     [setHabitGroupName],
@@ -93,7 +92,7 @@ export const AddNewHabitScreen: FC<AddNewHabitScreenProps> = ({ navigation }) =>
               renderCustomModal={renderDialog}
               style={styles.pickerLabel}
             >
-              {habitList.map((habitGroup) => (
+              {habitList.map(habitGroup => (
                 <Picker.Item
                   key={habitGroup.id}
                   value={habitGroup.groupName}

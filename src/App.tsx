@@ -10,6 +10,9 @@ import { useAuthentication } from './hooks';
 import { darkTheme, lightTheme } from './theme';
 
 LogBox.ignoreAllLogs();
+LogBox.ignoreLogs([
+  "[react-native-gesture-handler] Seems like you're using an old API with gesture components, check out new Gestures system!",
+]);
 
 const App = () => {
   const scheme = useColorScheme();
